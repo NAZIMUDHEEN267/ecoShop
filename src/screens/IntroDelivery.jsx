@@ -11,7 +11,7 @@ export class IntroDelivery extends Component {
     }
 
     handleEvent() {
-        this.props.navigation.navigate(navigation.HOME);
+        this.props.navigation.navigate(navigation.HOME_NAVIGATOR);
     }
 
     render() {
