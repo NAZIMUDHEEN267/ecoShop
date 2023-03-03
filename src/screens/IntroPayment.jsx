@@ -6,6 +6,8 @@ import { navigation } from '../constants';
 export class IntroPayment extends Component {
     constructor(props) {
         super(props);
+
+        this.handleEvent = this.handleEvent.bind(this);
     }
 
     handleEvent() {

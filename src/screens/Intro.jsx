@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { View, Text, Dimensions } from "react-native";
-import { colors, spaces } from "../constants";
+import { colors, navigation, spaces } from "../constants";
 import { StyledComponent } from "nativewind";
 import Icon from "react-native-vector-icons/Fontisto";
 import tw from "twrnc";
@@ -16,7 +16,7 @@ export class Intro extends Component {
         <StyledComponent component={View} style={tw`flex-1 items-center justify-center`}>
           <StyledComponent component={View} style={tw`flex-row items-center`}>
             <Icon name="opencart" size={25} color={colors.WHITE_COLOR} />
-            <StyledComponent component={Text} style={[tw`${typography.bgText} ml-2`, { color: colors.WHITE_COLOR }]}>
+            <StyledComponent component={Text} style={[tw`${typography.bgText} ml-2`, { color: colors.WHITE_COLOR }]} onPress={() => this.props.navigation.navigate(navigation.INTRO_PRODUCT)}>
               Eco Shop
             </StyledComponent>
           </StyledComponent>
