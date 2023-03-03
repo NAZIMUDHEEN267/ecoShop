@@ -1,19 +1,17 @@
 import { Component } from "react";
 import { View, Text, Dimensions } from "react-native";
-import { colors } from "../constants";
+import { colors, spaces } from "../constants";
 import { StyledComponent } from "nativewind";
 import Icon from "react-native-vector-icons/Fontisto";
 import tw from "twrnc";
 import typography from "../theme/typography";
-
-const {width} = Dimensions.get("screen");
 
 export class Intro extends Component {
   render() {
     return (
       <StyledComponent component={View} style={[tw`flex-1`, {backgroundColor: colors.PRIMARY_COLOR}]}>
         <StyledComponent component={View} style={tw`h-10/12 items-center justify-center`}>
-          <Icon name="opencart" size={width * .6} color={"rgba(0,0,0,.2)"}/>
+          <Icon name="opencart" size={spaces.widthSix} color={"rgba(0,0,0,.2)"}/>
         </StyledComponent>
         <StyledComponent component={View} style={tw`flex-1 items-center justify-center`}>
           <StyledComponent component={View} style={tw`flex-row items-center`}>

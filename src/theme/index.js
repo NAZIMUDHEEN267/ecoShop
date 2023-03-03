@@ -1,2 +1,4 @@
-import Typography from "./typography";
-import Animation from "./animations";
+import typography from "./typography";
+import animation from "./animations";
+
+export { typography, animation}

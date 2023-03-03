@@ -1,5 +1,5 @@
-class Animation {
+const animation = {
 
 }
 
-export default Animation;
+export default animation;

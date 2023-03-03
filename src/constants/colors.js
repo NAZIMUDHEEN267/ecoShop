@@ -8,6 +8,7 @@ const colors = {
     BOX_BLACK : "#222222",
     START_YELLOW : "#FDAB08",
     PRIMARY_TEXT : "#5FC489",
+    TEXT_LIGHT: "rgba(0,0,0,0.4)"
 }
 
 export default colors;
