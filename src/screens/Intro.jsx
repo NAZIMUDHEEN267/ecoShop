@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text } from "react-native";
 import { colors, navigation, spaces } from "../constants";
 import { StyledComponent } from "nativewind";
 import Icon from "react-native-vector-icons/Fontisto";
