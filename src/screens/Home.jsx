@@ -155,6 +155,24 @@ export class Home extends Component {
                             renderItem={({ index }) => <ProductItem width={"6.5/8"} nav={this.props.navigation}/>}
                         />
                     </View>
+                    {/* popular */}
+                    <View style={tw`mt-5 mb-2 w-full`}>
+                        <View style={tw`justify-between flex-row`}>
+                            <Text style={[tw`${typography.smText} mb-3`, { color: colors.BOX_BLACK }]}>Popular</Text>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.ALL_PRODUCTS)}>
+                                <Text style={tw`${typography.smText}`}>See all</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <Carousel
+                            vertical={false}
+                            width={spaces.width / 2}
+                            height={spaces.heightHalf * .6}
+                            style={{ width: spaces.width }}
+                            loop
+                            data={[...new Array(5).keys()]}
+                            renderItem={({ index }) => <ProductItem width={"6.5/8"} nav={this.props.navigation} />}
+                        />
+                    </View>
                 </View>
             </ScrollView>
         )

@@ -24,10 +24,10 @@ export function HomeNavigator(props) {
                     headerTitleAlign: "center",
                     headerLeft: () => (
                         <TouchableOpacity
-                            style={{ height: 40, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 40, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
+                            style={{ height: 35, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 35, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
                             onPress={props.navigation.goBack}
                         >
-                            <Icon type="entypo" name="chevron-left" size={35} color={colors.WHITE_COLOR} />
+                            <Icon type="entypo" name="chevron-left" size={30} color={colors.TEXT_LIGHT} />
                         </TouchableOpacity>
                     )
                 }}
@@ -41,10 +41,10 @@ export function HomeNavigator(props) {
                     headerTitleAlign: "center",
                     headerLeft: () => (
                         <TouchableOpacity
-                            style={{ height: 40, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 40, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
+                            style={{ height: 35, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 35, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
                             onPress={props.navigation.goBack}
                         >
-                            <Icon type="entypo" name="chevron-left" size={35} color={colors.WHITE_COLOR} />
+                            <Icon type="entypo" name="chevron-left" size={30} color={colors.TEXT_LIGHT} />
                         </TouchableOpacity>
                     )
                 }}
@@ -60,10 +60,10 @@ export function HomeNavigator(props) {
                 ),
                 headerLeft: () => (
                     <TouchableOpacity
-                        style={{ height: 40, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 40, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
+                        style={{ height: 35, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 35, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
                         onPress={props.navigation.goBack}
                     >
-                        <Icon type="entypo" name="chevron-left" size={35} color={colors.WHITE_COLOR} />
+                        <Icon type="entypo" name="chevron-left" size={30} color={colors.TEXT_LIGHT} />
                     </TouchableOpacity>
                 )
             }} />
@@ -76,10 +76,10 @@ export function HomeNavigator(props) {
                     headerTitleAlign: "center",
                     headerLeft: () => (
                         <TouchableOpacity
-                            style={{ height: 40, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 40, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
-                            onPress={() => props.navigation.navigate(navigation.PRODUCT)}
+                            style={{ height: 35, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 35, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
+                            onPress={props.navigation.goBack}
                         >
-                            <Icon type="entypo" name="chevron-left" size={35} color={colors.WHITE_COLOR} />
+                            <Icon type="entypo" name="chevron-left" size={30} color={colors.TEXT_LIGHT} />
                         </TouchableOpacity>
                     )
                 }}
