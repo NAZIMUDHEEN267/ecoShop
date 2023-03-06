@@ -5,17 +5,20 @@ import HomeAllCategories from "../screens/HomeAllCategories";
 import HomeAllProducts from "../screens/HomeAllProducts";
 import HomeProduct from "../screens/HomeProduct";
 import { Icon } from "@rneui/themed";
-import { TouchableOpacity, View, Text } from "react-native";
+import { TouchableOpacity } from "react-native";
 import tw from "twrnc";
 
 const Stack = createStackNavigator();
 
-export function HomeNavigator() {
+export function HomeNavigator(props) {
+    console.log(props.navigation.getState())
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.ALL_PRODUCTS}>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.PRODUCT}>
             <Stack.Screen component={Home} name={navigation.HOME} />
             <Stack.Screen component={HomeAllCategories} name={navigation.ALL_CATEGORIES} />
-            <Stack.Screen component={HomeProduct} name={navigation.PRODUCT} />
+            <Stack.Screen
+                component={HomeProduct}
+                name={navigation.PRODUCT} />
             <Stack.Screen component={HomeAllProducts} name={navigation.ALL_PRODUCTS} options={{
                 headerShown: true,
                 title: "New arrivals",
