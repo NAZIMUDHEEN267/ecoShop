@@ -17,7 +17,7 @@ export class HomeProduct extends Component {
     this.state = {
       unitExpanded: false,
       boxExpanded: false,
-      textRef: {}
+      previewBorder: 0
     }
   }
 
@@ -26,32 +26,27 @@ export class HomeProduct extends Component {
       <View style={tw`flex-1`}>
         <ScrollView>
           <View style={tw`w-full`}>
-              <Image
-                source={{ uri: "https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg" }}
-                style={{height: spaces.heightHalf / 1.4}}
-                resizeMode={"cover"}
-              />
+            <Image
+              source={{ uri: "https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg" }}
+              style={{ height: spaces.heightHalf / 1.4 }}
+              resizeMode={"cover"}
+            />
 
             <View style={tw`bg-white h-full w-full ${spaces['p-normal']}`}>
               <View style={[tw`justify-center items-center flex-row mb-4`, { marginTop: -39 }]}>
-                <TouchableOpacity activeOpacity={.7} style={[tw`rounded h-24 w-24 mr-2`, { elevation: 10 }]}>
-                  <Image
-                    source={{ uri: "https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg" }}
-                    style={tw`w-full h-full rounded-xl`}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={.7} style={[tw`rounded h-24 w-24 mr-2`, { elevation: 14 }]}>
-                  <Image
-                    source={{ uri: "https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg" }}
-                    style={tw`w-full h-full rounded-xl`}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={.7} style={[tw`rounded h-24 w-24 mr-2`, { elevation: 14 }]}>
-                  <Image
-                    source={{ uri: "https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg" }}
-                    style={tw`w-full h-full rounded-xl`}
-                  />
-                </TouchableOpacity>
+                {
+                  [0,2,23].map((_, i) => (
+                    <TouchableOpacity activeOpacity={.7}
+                      style={[tw`rounded h-24 w-24 mr-2`, { elevation: 10 }]}
+                      onPress={() => this.setState({ ...this.state, previewBorder: i })}
+                    >
+                      <Image
+                        source={{ uri: "https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg" }}
+                        style={tw`w-full h-full rounded-xl ${i === this.state.previewBorder ? "border-2 border-green-400" : ""}`}
+                      />
+                    </TouchableOpacity>
+                  ))
+                }
               </View>
 
               <Text style={[tw`${typography.smText} mt-2`, { color: colors.TEXT_LIGHT }]}>{"vegetable".toLocaleUpperCase()}</Text>
@@ -105,7 +100,7 @@ export class HomeProduct extends Component {
                     buttonTextStyle={tw`text-base`}
                     data={[1, 2, 3, 4, 5].map(item => item + " Boxes")}
                     renderDropdownIcon={() => (
-                      <Icon name='keyboard-arrow-down' type='materialicons'/>
+                      <Icon name='keyboard-arrow-down' type='materialicons' />
                     )}
                     onSelect={(selectedItem, index) => {
                       console.log(selectedItem)
@@ -116,13 +111,13 @@ export class HomeProduct extends Component {
                   />
                 </View>
               </View>
-              {/* Top tab navigation */} 
-                <ProductDetailsNavigator />
+              {/* Top tab navigation */}
+              <ProductDetailsNavigator />
             </View>
           </View >
         </ScrollView>
         <View style={[tw`w-full items-center justify-center flex-row h-18 bg-white border-t border-gray-300`, { elevation: 45 }]}>
-          <View style={{ backgroundColor: colors.PRIMARY_LIGHT, padding: 10, borderRadius: 5 , width: spaces.width * .130, alignItems: "center", justifyContent: "center"}}>
+          <View style={{ backgroundColor: colors.PRIMARY_LIGHT, padding: 10, borderRadius: 5, width: spaces.width * .130, alignItems: "center", justifyContent: "center" }}>
             <View>
               <Text style={tw`absolute -top-2 -right-1 z-2 h-5 w-2.7 text-center text-white rounded ${typography.smText} bg-green-500`}>0</Text>
               <Icon name='shoppingcart' type='antdesign' />

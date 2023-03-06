@@ -68,7 +68,7 @@ export class HomeReview extends Component {
           textAlign='left'
         />
 
-        <TouchableOpacity style={[tw`mt-5 h-13 w-full justify-center rounded`, {backgroundColor: colors.PRIMARY_COLOR}]}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.PRODUCT)} style={[tw`mt-5 h-13 w-full justify-center rounded`, {backgroundColor: colors.PRIMARY_COLOR}]}>
           <Text style={tw`${typography.smText} text-center text-white`}>Submit Feedback</Text>
         </TouchableOpacity>
         <Text style={[tw`mt-2 text-center text-gray-400`, {textDecorationLine: "underline"}]}
