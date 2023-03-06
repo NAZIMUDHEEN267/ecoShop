@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Image, SearchBar } from 'react-native-elements';
 import tw from "twrnc";
 import Carousel from 'react-native-reanimated-carousel';
-import { colors, spaces } from '../constants';
+import { colors, navigation, spaces } from '../constants';
 import { typography } from '../theme';
 import { ScrollView } from 'react-native-gesture-handler';
 import Fontisto from "react-native-vector-icons/Fontisto";
@@ -141,7 +141,7 @@ export class Home extends Component {
                     <View style={tw`mt-5 mb-2 w-full`}>
                         <View style={tw`justify-between flex-row`}>
                             <Text style={[tw`${typography.smText} mb-3`, { color: colors.BOX_BLACK }]}>Popular</Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.ALL_PRODUCTS)}>
                                 <Text style={tw`${typography.smText}`}>See all</Text>
                             </TouchableOpacity>
                         </View>
@@ -152,7 +152,7 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={[...new Array(5).keys()]}
-                            renderItem={({ index }) => <ProductItem width={"6.5/8"}/>}
+                            renderItem={({ index }) => <ProductItem width={"6.5/8"} nav={this.props.navigation}/>}
                         />
                     </View>
                 </View>

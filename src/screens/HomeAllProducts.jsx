@@ -41,7 +41,7 @@ export class HomeAllProducts extends Component {
           {/* <Text onPress={() => this.setState({ ...this.state, show: !this.state.show })} >hello</Text> */}
           {
             Array(10).fill(0).map((item, i) => (
-              <ProductItem width={"3.8/8"} key={i} />
+              <ProductItem width={"3.8/8"} key={i} nav={this.props.navigation}/>
             ))
           }
         </View>

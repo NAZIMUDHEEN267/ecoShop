@@ -7,7 +7,7 @@ export class Description extends Component {
   render() {
     return (
       <ScrollView style={{height: 300, padding: 10}}>
-        <Text style={tw`${typography.mdText}`}>Description</Text>
+        <Text style={tw`${typography.mdText} mb-2`}>Description</Text>
         <Text>
            asperiores sit impedit assumenda maxime odit dolor dolore quaerat ea in numquam corporis laudantium, a quibusdam, corrupti maiores. Magnam, facere ipsam!
           Nostrum quam eum quis quas in minima? Maiores atque, mollitia expedita sapiente optio commodi porro exercitationem! Adipisci exercitationem odit odio excepturi deleniti nulla optio ullam eos nobis voluptate. Ratione, autem.

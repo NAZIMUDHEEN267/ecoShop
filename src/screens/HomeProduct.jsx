@@ -37,6 +37,7 @@ export class HomeProduct extends Component {
                 {
                   [0,2,23].map((_, i) => (
                     <TouchableOpacity activeOpacity={.7}
+                      key={i}
                       style={[tw`rounded h-24 w-24 mr-2`, { elevation: 10 }]}
                       onPress={() => this.setState({ ...this.state, previewBorder: i })}
                     >

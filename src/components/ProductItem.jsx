@@ -2,18 +2,20 @@ import { Text, View, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import Entypo from "react-native-vector-icons/Entypo";
 import tw from "twrnc";
-import { colors } from '../constants';
+import { colors, navigation } from '../constants';
 import { typography } from '../theme';
 import { Image } from 'react-native-elements';
 
 export class ProductItem extends Component {
     constructor(props) {
         super(props);
+
+        this.nav = this.props?.nav.navigate 
     }
 
   render() {
     return (
-            <View style={[tw`bg-white p-2 m-1-2 rounded w-${this.props.width} justify-between`]}>
+            <TouchableOpacity onPress={() => this.nav(navigation.PRODUCT)}  style={[tw`bg-white p-2 m-1-2 rounded w-${this.props.width} justify-between`]}>
                 <Image
                     className="w-full mb-1 h-28"
                     source={{ uri: "https://cdn2.vectorstock.com/i/1000x1000/60/51/fruits-and-vegetables-group-cartoon-vector-1356051.jpg" }}
@@ -37,7 +39,7 @@ export class ProductItem extends Component {
                 <TouchableOpacity style={[tw`mt-2 p-2 rounded`, { backgroundColor: colors.PRIMARY_LIGHT }]}>
                     <Text style={tw`text-center`}>+ Add to cart</Text>
                 </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
     )
   }
 }
