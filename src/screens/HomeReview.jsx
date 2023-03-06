@@ -5,8 +5,17 @@ import Entypo from "react-native-vector-icons/Entypo";
 import { typography } from '../theme';
 import { colors, navigation, spaces } from '../constants';
 import { TextInput } from 'react-native-gesture-handler';
-import { color } from '@rneui/base';
+import StarRating from 'react-native-star-rating-widget';
 export class HomeReview extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      rating: 0,
+      message: ""
+    }
+  }
+
   render() {
     return (
       <View style={tw`flex-1 bg-gray-100 ${spaces['p-normal']}`}>
@@ -38,19 +47,25 @@ export class HomeReview extends Component {
 
         <Text style={tw`${typography.mdSmText} text-center mt-5 mb-5 text-black`}>Rating Your Products</Text>
         <Text style={tw`text-gray-400 text-center  mb-5`}>What is your rate?</Text>
-        <View style={tw`mt-1 mb-1 flex-row items-center justify-center`}>
-          <Entypo name='star' size={45} color={colors.TEXT_LIGHT} />
-          <Entypo name='star' size={45} color={colors.TEXT_LIGHT} />
-          <Entypo name='star' size={45} color={colors.TEXT_LIGHT} />
-          <Entypo name='star' size={45} color={colors.TEXT_LIGHT} />
-          <Entypo name='star' size={45} color={colors.TEXT_LIGHT} />
-        </View>
+
+        <StarRating
+          rating={this.state.rating}
+          onChange={(value) => this.setState({rating: value})}
+          starSize={42}
+          style={{alignSelf: "center"}}
+          emptyColor={colors.TEXT_LIGHT}
+          color={colors.START_YELLOW}
+        />
 
         <Text style={tw`mt-5 text-black ${typography.smText}`}>Please Write Services Quality</Text>
         <TextInput 
           numberOfLines={10}
-          style={[tw`bg-white w-full mt-3`, {elevation: 10}]}
-          focusable
+          style={[tw`bg-white w-full mt-3 p-3`, {elevation: 10}]}
+          multiline
+          value={this.state.message}
+          onChangeText={(text) => this.setState({...this.state, message: text})}
+          textAlignVertical='top'
+          textAlign='left'
         />
 
         <TouchableOpacity style={[tw`mt-5 h-13 w-full justify-center rounded`, {backgroundColor: colors.PRIMARY_COLOR}]}>

@@ -6711,6 +6711,11 @@
   "resolved" "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.4.0.tgz"
   "version" "0.4.0"
 
+"react-native-star-rating-widget@^1.7.1":
+  "integrity" "sha512-AdEJHLrosjxv4vLNmEIcePuU8CAPsbyCjCHI21T2SOmwN9Gh4XiNS5JZOZtDQe3Q7ZCqYeQRj3oi0nYrNdUvAQ=="
+  "resolved" "https://registry.npmjs.org/react-native-star-rating-widget/-/react-native-star-rating-widget-1.7.1.tgz"
+  "version" "1.7.1"
+
 "react-native-svg-transformer@^1.0.0":
   "integrity" "sha512-ALHU5VvLLyKM/BvyEG7VYJmqglvaXtU7mGRCxrEwwpJO/GBf1ZMUzc4AeJAjSodj7yYtlDYRxNSt9ySWpaa6JQ=="
   "resolved" "https://registry.npmjs.org/react-native-svg-transformer/-/react-native-svg-transformer-1.0.0.tgz"
@@ -6720,7 +6725,7 @@
     "@svgr/plugin-svgo" "^6.1.2"
     "path-dirname" "^1.0.2"
 
-"react-native-svg@^13.8.0", "react-native-svg@>=12.0.0":
+"react-native-svg@*", "react-native-svg@^13.8.0", "react-native-svg@>=12.0.0":
   "integrity" "sha512-G8Mx6W86da+vFimZBJvA93POw8yz0fgDS5biy6oIjMWVJVQSDzCyzwO/zY0yuZmCDhKSZzogl5m0wXXvW2OcTA=="
   "resolved" "https://registry.npmjs.org/react-native-svg/-/react-native-svg-13.8.0.tgz"
   "version" "13.8.0"
