@@ -7,6 +7,7 @@ import HomeProduct from "../screens/HomeProduct";
 import { Icon } from "@rneui/themed";
 import { TouchableOpacity } from "react-native";
 import tw from "twrnc";
+import HomeReview from "../screens/HomeReview";
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,10 @@ export function HomeNavigator(props) {
                     </TouchableOpacity>
                 )
             }} />
+            <Stack.Screen 
+                name={navigation.REVIEW}
+                component={HomeReview}
+            />
         </Stack.Navigator>
     )
 }

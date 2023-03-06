@@ -21,10 +21,6 @@ export class HomeProduct extends Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log(this.state.textRef);
-  }
-
   render() {
     return (
       <View style={tw`flex-1`}>
@@ -59,7 +55,7 @@ export class HomeProduct extends Component {
               </View>
 
               <Text style={[tw`${typography.smText} mt-2`, { color: colors.TEXT_LIGHT }]}>{"vegetable".toLocaleUpperCase()}</Text>
-              <Text style={[tw`${typography.smText}`, { color: colors.BOX_BLACK }]}>some namejalsdkfjalsfkjasldkf</Text>
+              <Text style={[tw`${typography.smText}`, { color: colors.BOX_BLACK }]}>Kashmiri Apple</Text>
               {/* stars */}
               <View style={tw`mt-1 mb-1 flex-row items-center`}>
                 <Entypo name='star' size={15} color={"#db9004"} />
@@ -86,6 +82,7 @@ export class HomeProduct extends Component {
                     data={[.5, 1, 2, 3, 4].map(item => item + " Kg")}
                     buttonStyle={tw`bg-gray-100 rounded mt-2 w-5/6`}
                     defaultButtonText='Select Unit'
+                    buttonTextStyle={tw`text-base`}
                     onSelect={(selectedItem, index) => {
                       console.log(selectedItem, index)
                     }}
@@ -105,6 +102,7 @@ export class HomeProduct extends Component {
                   <SelectDropdown
                     defaultButtonText='Select Boxes'
                     buttonStyle={tw`bg-gray-100 rounded mt-2 w-5/6`}
+                    buttonTextStyle={tw`text-base`}
                     data={[1, 2, 3, 4, 5].map(item => item + " Boxes")}
                     renderDropdownIcon={() => (
                       <Icon name='keyboard-arrow-down' type='materialicons'/>
