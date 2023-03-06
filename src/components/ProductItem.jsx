@@ -27,10 +27,12 @@ export class ProductItem extends Component {
                     <Entypo name='star' size={15} color={"#db9004"} />
                     <Entypo name='star' size={15} color={"#db9004"} />
                 </View>
+                <Text style={tw`${typography.smText} text-center`}>Fruits</Text>
+
                 {/* price */}
                 <View style={tw`flex-row justify-evenly mb-1`}>
                     <Text style={[tw`${typography.smText}`, { textDecorationLine: "line-through", textDecorationStyle: "solid", color: colors.TEXT_LIGHT }]}>$345</Text>
-                    <Text style={tw`${typography.smText}`}>$76</Text>
+                    <Text style={tw`${typography.smText} text-red-500`}>$76</Text>
                 </View>
                 <TouchableOpacity style={[tw`mt-2 p-2 rounded`, { backgroundColor: colors.PRIMARY_LIGHT }]}>
                     <Text style={tw`text-center`}>+ Add to cart</Text>

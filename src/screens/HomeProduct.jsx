@@ -75,7 +75,7 @@ export class HomeProduct extends Component {
                 <Text style={{ color: colors.PRIMARY_COLOR }}>1345 products available </Text>
               </View>
 
-              <View style={tw`flex-row mt-5 justify-between`}>
+              <View style={tw`flex-row mt-8 mb-8 justify-between`}>
                 <View style={tw`w-1/2`}>
                   <Text>WEIGHT</Text>
                   <SelectDropdown

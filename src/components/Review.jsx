@@ -2,12 +2,16 @@ import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
 import { Avatar } from "@rneui/themed";
-import { spaces, colors } from '../constants';
+import { spaces, navigation } from '../constants';
 import { typography } from '../theme';
 import Entypo from "react-native-vector-icons/Entypo";
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 export class Review extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <ScrollView>
@@ -54,7 +58,7 @@ export class Review extends Component {
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur maxime ullam incidunt atque. Dolores in nesciunt iure voluptates laborum ...
             </Text>
           </View>
-          <TouchableOpacity style={tw`w-3/5 h-13 rounded bg-yellow-500 justify-center mt-10 self-center`} onPress={() => }>
+          <TouchableOpacity style={tw`w-3/5 h-13 rounded bg-yellow-500 justify-center mt-10 self-center`} onPress={() => this.props.navigation.navigate(navigation.HOME_REVIEW)}>
             <Text style={tw`text-center ${typography.smText}`}>Add review</Text>
           </TouchableOpacity>
         </View>

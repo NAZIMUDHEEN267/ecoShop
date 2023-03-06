@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 export function HomeNavigator(props) {
     console.log(props.navigation.getState())
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.PRODUCT}>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.HOME_REVIEW}>
             <Stack.Screen component={Home} name={navigation.HOME} />
             <Stack.Screen component={HomeAllCategories} name={navigation.ALL_CATEGORIES} />
             <Stack.Screen
@@ -30,7 +30,7 @@ export function HomeNavigator(props) {
                 )
             }} />
             <Stack.Screen 
-                name={navigation.REVIEW}
+                name={navigation.HOME_REVIEW}
                 component={HomeReview}
             />
         </Stack.Navigator>
