@@ -1,18 +1,20 @@
-import { Text, View } from 'react-native'
+import { Text, ScrollView } from 'react-native'
 import React, { Component } from 'react'
+import tw from "twrnc";
+import { typography } from '../theme'
 
 export class Description extends Component {
   render() {
     return (
-      <View style={{height: 400, width: 300}}>
+      <ScrollView style={{height: 300, padding: 10}}>
+        <Text style={tw`${typography.mdText}`}>Description</Text>
         <Text>
-         corporis, maxime distinctio iusto quo sequi optio repudiandae unde nemo repellendus ea maiores eaque. Quis quaerat non quisquam reiciendis, consequuntur tempora nisi, voluptatem atque earum quam maiores accusantium?
-          Sapiente accusantium obcaecati sint quod corrupti? Accusamus, labore? Quidem minus, esse autem nihil aliquam numquam, provident ea dolorum tenetur facere totam maxime nostrum eaque accusamus, eveniet cupiditate asperiores ex blanditiis.
-          Quam, sint? Repellat quo, officia exercitationem optio in culpa voluptas eius! Facilis similique veritatis dolorum. Doloremque quos, fuga maxime cumque sint autem quia recusandae. Nihil numquam assumenda voluptatum corrupti aut!
-          Error consequatur veniam saepe sunt, reprehenderit sit recusandae quaerat vero obcaecati blanditiis aperiam aspernatur voluptate debitis quae accusamus, tempora dolores autem. Molestiae, qui. Incidunt eos doloribus atque, placeat ipsa soluta?
-          Autem reprehenderit illum molestias laboriosam adipisci maxime ducimus, laborum ex omnis accusamus similique iure doloremque praesentium dolores veritatis voluptatibus at ipsam repudiandae possimus labore delectus molestiae perspiciatis. Rem, sint iste!
+           asperiores sit impedit assumenda maxime odit dolor dolore quaerat ea in numquam corporis laudantium, a quibusdam, corrupti maiores. Magnam, facere ipsam!
+          Nostrum quam eum quis quas in minima? Maiores atque, mollitia expedita sapiente optio commodi porro exercitationem! Adipisci exercitationem odit odio excepturi deleniti nulla optio ullam eos nobis voluptate. Ratione, autem.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, dolorem corporis labore doloremque iste harum unde ratione eius hic neque quas asperiores amet modi impedit! Rerum distinctio est cumque temporibus!
+          Natus, impedit aperiam! Distinctio perspiciatis iusto ea dolore consequuntur sed numquam excepturi eligendi deserunt ipsam tempore alia
         </Text>
-      </View>
+      </ScrollView>
     )
   }
 }
