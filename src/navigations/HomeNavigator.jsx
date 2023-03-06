@@ -13,14 +13,30 @@ const Stack = createStackNavigator();
 
 export function HomeNavigator(props) {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.HOME}>
-            <Stack.Screen component={Home} name={navigation.HOME} />
-            <Stack.Screen component={HomeAllCategories} name={navigation.ALL_CATEGORIES} />
+        <Stack.Navigator initialRouteName={navigation.HOME}>
+            <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }} />
+            <Stack.Screen
+                component={HomeAllCategories}
+                name={navigation.ALL_CATEGORIES}
+                options={{
+                    title: "All categories",
+                    headerStyle: tw`bg-gray-100`,
+                    headerTitleAlign: "center",
+                    headerLeft: () => (
+                        <TouchableOpacity
+                            style={{ height: 40, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 40, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
+                            onPress={props.navigation.goBack}
+                        >
+                            <Icon type="entypo" name="chevron-left" size={35} color={colors.WHITE_COLOR} />
+                        </TouchableOpacity>
+                    )
+                }}
+            />
             <Stack.Screen
                 component={HomeProduct}
-                name={navigation.PRODUCT} 
+                name={navigation.PRODUCT}
                 options={{
-                    headerShown: true,
+                    headerStyle: tw`bg-gray-100`,
                     title: "Popular",
                     headerTitleAlign: "center",
                     headerLeft: () => (
@@ -32,13 +48,22 @@ export function HomeNavigator(props) {
                         </TouchableOpacity>
                     )
                 }}
-                />
+            />
             <Stack.Screen component={HomeAllProducts} name={navigation.ALL_PRODUCTS} options={{
-                headerShown: true,
                 title: "New arrivals",
+                headerStyle: tw`bg-gray-100`,
+                headerTitleAlign: "center",
                 headerRight: () => (
                     <TouchableOpacity style={tw`h-full w-15 items-center justify-center`}>
                         <Icon type="antdesign" name="menu-unfold" />
+                    </TouchableOpacity>
+                ),
+                headerLeft: () => (
+                    <TouchableOpacity
+                        style={{ height: 40, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 40, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
+                        onPress={props.navigation.goBack}
+                    >
+                        <Icon type="entypo" name="chevron-left" size={35} color={colors.WHITE_COLOR} />
                     </TouchableOpacity>
                 )
             }} />
@@ -46,10 +71,10 @@ export function HomeNavigator(props) {
                 name={navigation.HOME_REVIEW}
                 component={HomeReview}
                 options={{
-                    headerShown: true,
                     title: "Review",
+                    headerStyle: tw`bg-gray-100`,
                     headerTitleAlign: "center",
-                    headerLeft: (l) => (
+                    headerLeft: () => (
                         <TouchableOpacity
                             style={{ height: 40, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 40, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
                             onPress={() => props.navigation.navigate(navigation.PRODUCT)}

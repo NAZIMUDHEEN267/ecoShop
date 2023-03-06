@@ -55,7 +55,7 @@ export class Home extends Component {
                     <View style={tw`mb-3`}>
                         <View style={tw`flex-row justify-between`}>
                             <Text style={[tw`${typography.smText}`, { color: colors.BOX_BLACK }]}>My market category</Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.ALL_CATEGORIES)}>
                                 <Text style={tw`${typography.smText}`}>See all</Text>
                             </TouchableOpacity>
                         </View>
