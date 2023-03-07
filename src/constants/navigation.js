@@ -38,4 +38,10 @@ export default {
     ORDER_CANCELED: "ORDER_CANCELED",
     ORDER_SUCCESS: "SUCCESS",
     ORDER_FAIL: "FAIL",
+
+    // Login
+    LOGIN: "LOGIN",
+
+    // Sign
+    SIGN_UP: "SIGN_UP"
 }
