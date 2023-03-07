@@ -58,10 +58,10 @@ export class ProfileScreen extends Component {
                     </DataTable>
 
                     <View style={tw`mt-9 flex-row m-3 justify-between`}>
-                        <TouchableOpacity style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.EDIT_ADDRESS)} style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
                             <Text style={tw`${typography.smText} text-white`}>Edit Address</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.EDIT_PAYMENT)} style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
                             <Text style={tw`${typography.smText} text-white`}>Edit Payment</Text>
                         </TouchableOpacity>
                     </View>
