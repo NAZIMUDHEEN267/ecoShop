@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 const ProfileNavigator = function (props) {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.EDIT_PAYMENT}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name={navigation.PROFILE_SCREEN} component={ProfileScreen} />
             <Stack.Screen name={navigation.PROFILE_NOTIFICATION} component={ProfileNotification} />
             <Stack.Screen

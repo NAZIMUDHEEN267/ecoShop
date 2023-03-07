@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 
 export default IntroNavigation = () => {
     return (
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={navigation.BOTTOM_TAB_NAVIGATOR}>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name={navigation.INTRO} component={Intro}/>
             <Stack.Screen name={navigation.INTRO_PRODUCT} component={IntroProduct}/>
             <Stack.Screen name={navigation.INTRO_DELIVERY} component={IntroDelivery} />

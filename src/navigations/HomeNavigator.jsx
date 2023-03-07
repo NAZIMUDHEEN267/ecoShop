@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 
 export function HomeNavigator(props) {
     return (
-        <Stack.Navigator initialRouteName={navigation.HOME}>
+        <Stack.Navigator >
             <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }} />
             <Stack.Screen
                 component={HomeAllCategories}

@@ -3,8 +3,8 @@ import { Text } from "react-native-elements";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { colors, navigation } from "../constants";
 import OrderDeliver from "../screens/OrderDeliver";
-import OrderCancel from "./OrderCancel";
-import OrderProcess from "./OrderProcess";
+import OrderCancel from "../screens/OrderCancel";
+import OrderProcess from "../screens/OrderProcess";
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -14,7 +14,6 @@ export default function OrderNavigator() {
             tabBarIndicatorStyle: {display: "none"},
             tabBarBounces: false
         }}
-        initialRouteName={navigation.ORDER_PROCESSING}
         >
             <TopTab.Screen component={OrderDeliver} name={navigation.ORDER_DELIVERED}
                 options={{

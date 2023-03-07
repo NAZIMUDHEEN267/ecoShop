@@ -14,10 +14,10 @@ const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator(props) {
     return (
-        <BottomTab.Navigator screenOptions={{headerShown: false, tabBarShowLabel: false}} initialRouteName={navigation.PROFILE}>
+        <BottomTab.Navigator screenOptions={{headerShown: false, tabBarShowLabel: false}} >
             <BottomTab.Screen component={HomeNavigator} name={navigation.HOME_NAVIGATOR} options={() => ({
                 tabBarIcon: ({focused}) => <AntDesign name="home" size={25} color={focused ? colors.PRIMARY_COLOR : colors.TEXT_LIGHT}/>,
-                tabBarStyle: {height: 0}
+                // tabBarStyle: {height: 0}
             })}/>
             <BottomTab.Screen component={OrderNavigator} name={navigation.ORDER} options={() => ({
                 tabBarIcon: ({focused}) => <Feather name="shopping-bag" size={25} color={focused ? colors.PRIMARY_COLOR : colors.TEXT_LIGHT} />,
