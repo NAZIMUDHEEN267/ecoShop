@@ -13,7 +13,9 @@ export default function OrderNavigator() {
         <TopTab.Navigator screenOptions={{
             tabBarIndicatorStyle: {display: "none"},
             tabBarBounces: false
-        }}>
+        }}
+        initialRouteName={navigation.ORDER_PROCESSING}
+        >
             <TopTab.Screen component={OrderDeliver} name={navigation.ORDER_DELIVERED}
                 options={{
                     tabBarActiveTintColor: colors.WHITE_COLOR,
