@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 const ProfileNavigator = function (props) {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.EDIT_ADDRESS}>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.EDIT_PAYMENT}>
             <Stack.Screen name={navigation.PROFILE_SCREEN} component={ProfileScreen} />
             <Stack.Screen name={navigation.PROFILE_NOTIFICATION} component={ProfileNotification} />
             <Stack.Screen
@@ -31,7 +31,19 @@ const ProfileNavigator = function (props) {
                     )
                 }}
             />
-            <Stack.Screen name={navigation.EDIT_PAYMENT} component={EditPayment} />
+            <Stack.Screen name={navigation.EDIT_PAYMENT} component={EditPayment} options={{
+                headerShown: true,
+                title: "Edit Payment",
+                headerTitleAlign: "center",
+                headerLeft: () => (
+                    <TouchableOpacity
+                        style={{ height: 35, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 35, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
+                        onPress={props.navigation.goBack}
+                    >
+                        <Icon type="entypo" name="chevron-left" size={30} color={colors.TEXT_LIGHT} />
+                    </TouchableOpacity>
+                )
+            }} />
         </Stack.Navigator>
     )
 }
