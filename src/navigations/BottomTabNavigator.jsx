@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { colors, navigation } from "../constants";
-import Profile from "../screens/Profile";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
@@ -8,13 +7,14 @@ import HomeNavigator from "./HomeNavigator";
 import OrderNavigator from "./OrderNavigator";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Icon } from "react-native-elements";
+import ProfileNavigator from "./ProfileNavigator";
 
 
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator(props) {
     return (
-        <BottomTab.Navigator screenOptions={{headerShown: false, tabBarShowLabel: false}} initialRouteName={navigation.ORDER}>
+        <BottomTab.Navigator screenOptions={{headerShown: false, tabBarShowLabel: false}} initialRouteName={navigation.PROFILE}>
             <BottomTab.Screen component={HomeNavigator} name={navigation.HOME_NAVIGATOR} options={() => ({
                 tabBarIcon: ({focused}) => <AntDesign name="home" size={25} color={focused ? colors.PRIMARY_COLOR : colors.TEXT_LIGHT}/>,
                 tabBarStyle: {height: 0}
@@ -33,7 +33,7 @@ export default function BottomTabNavigator(props) {
                     </TouchableOpacity>
                 )
             })} />
-            <BottomTab.Screen component={Profile} name={navigation.PROFILE} options={() => ({
+            <BottomTab.Screen component={ProfileNavigator} name={navigation.PROFILE} options={() => ({
                 tabBarIcon: ({focused}) => <FontAwesome name="user-circle" size={25} color={focused ? colors.PRIMARY_COLOR : colors.TEXT_LIGHT} />
             })} />
         </BottomTab.Navigator>

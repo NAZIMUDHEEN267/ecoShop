@@ -12,7 +12,7 @@ export class OrderProcess extends Component {
 
     this.state = {}
 
-    Array(3).fill("grape").forEach((product, i) => {
+    Array(1).fill("grape").forEach((product, i) => {
       this.state[product + i] = {
         "Delivered": false,
         "Out for delivery": false,
