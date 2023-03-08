@@ -5,7 +5,8 @@ const initialState = {
     deleted: [],
     delivered: [],
     showCategory: false,
-    category: "New arrivals"
+    category: "New arrivals",
+    products: null
 }
 
 const productSlice = createSlice({
@@ -29,11 +30,14 @@ const productSlice = createSlice({
         },
         editCategory: function (state, action) {
             state.category = action.payload;
+        },
+        setApiProducts: function (state, action) {
+            state.products = action.payload;
         }
     }
 })
 
-const { actions: { setProduct, delProduct, showCategory, editCategory }, reducer } = productSlice;
+const { actions: { setProduct, delProduct, showCategory, editCategory, setApiProducts }, reducer } = productSlice;
 
 const mapStateToProps = (state) => ({ productData: state.productReducer });
 
@@ -42,7 +46,8 @@ const mapDispatchToProps = dispatch => {
         setProductData: (data) => dispatch(setProduct(data)),
         delProductData: (data) => dispatch(delProduct(data)),
         setShowCategory: (val) => dispatch(showCategory(val)),
-        setEditCategory: (str) => dispatch(editCategory(str))
+        setEditCategory: (str) => dispatch(editCategory(str)),
+        changeApiProducts: (data) => dispatch(setApiProducts(data)) 
     }
 }
 

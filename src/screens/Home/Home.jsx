@@ -11,22 +11,37 @@ import CartImg from "../../assets/images/shopping_cart.png"
 import ProductItem from '../../components/ProductItem';
 import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/userData';
 import { connect } from "react-redux";
+import { ActivityIndicator } from 'react-native-paper';
+const data = require("../../data/data.json")
 
 export class Home extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            searchText: ""
+            searchText: "",
+            data: null,
+            loading: true
         }
     }
 
     componentDidMount() {
         this.props.setUserLog(false);
+        this.setState({ ...this.state, data: data.products, loading: false})
+    }
+
+    componentDidUpdate() {
+        this.state.data.forEach(item => {
+            console.log(item.category);
+        })
     }
 
     render() {
-        return (
+        return this.state.loading ? 
+            <View>
+                <ActivityIndicator />
+            </View>
+        : 
             <ScrollView style={tw`bg-gray-100`}>
 
                 {/* header */}
@@ -39,7 +54,7 @@ export class Home extends Component {
                         <View>
                             <TouchableOpacity>
                                 <Text style={tw`absolute -top-2 -right-1 z-2 h-5 w-2.7 text-center rounded ${typography.smText} bg-yellow-300`}>0</Text>
-                            <Image source={CartImg} style={{ height: 32, width: 32 }} resizeMode={"contain"} />
+                                <Image source={CartImg} style={{ height: 32, width: 32 }} resizeMode={"contain"} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -70,40 +85,40 @@ export class Home extends Component {
                                 <TouchableOpacity activeOpacity={.7}>
                                     <Image
                                         className="w-10 h-14 mb-1"
-                                        source={{ uri: "https://cdn2.vectorstock.com/i/1000x1000/60/51/fruits-and-vegetables-group-cartoon-vector-1356051.jpg" }}
+                                        source={{ uri: this.state.data[0].thumbnail }}
                                         resizeMode={"contain"}
                                     />
-                                    <Text style={tw`text-center`}>Fruits</Text>
+                                    <Text style={tw`text-center`}>Phon...</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={[tw`w-1/5 h-24 p-3 items-center justify-center rounded-xl`, { backgroundColor: colors.PRIMARY_LIGHT }]}>
                                 <TouchableOpacity activeOpacity={.7}>
                                     <Image
                                         className="w-10 h-14 mb-1"
-                                        source={{ uri: "https://cdn2.vectorstock.com/i/1000x1000/60/51/fruits-and-vegetables-group-cartoon-vector-1356051.jpg" }}
+                                        source={{ uri: "https://i.dummyjson.com/data/products/6/thumbnail.png" }}
                                         resizeMode={"contain"}
                                     />
-                                    <Text style={tw`text-center`}>Veg</Text>
+                                    <Text style={tw`text-center`}>Lap...</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={[tw`w-1/5 h-24 p-3 items-center justify-center rounded-xl`, { backgroundColor: colors.PRIMARY_LIGHT }]}>
                                 <TouchableOpacity activeOpacity={.7}>
                                     <Image
                                         className="w-10 h-14 mb-1"
-                                        source={{ uri: "https://cdn2.vectorstock.com/i/1000x1000/60/51/fruits-and-vegetables-group-cartoon-vector-1356051.jpg" }}
+                                        source={{ uri: "https://i.dummyjson.com/data/products/11/thumbnail.jpg" }}
                                         resizeMode={"contain"}
                                     />
-                                    <Text style={tw`text-center`}>Meat</Text>
+                                    <Text style={tw`text-center`}>Frag...</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={[tw`w-1/5 h-24 p-3 items-center justify-center rounded-xl`, { backgroundColor: colors.PRIMARY_LIGHT }]}>
                                 <TouchableOpacity activeOpacity={.7}>
                                     <Image
                                         className="w-10 h-14 mb-1"
-                                        source={{ uri: "https://cdn2.vectorstock.com/i/1000x1000/60/51/fruits-and-vegetables-group-cartoon-vector-1356051.jpg" }}
+                                        source={{ uri: "https://i.dummyjson.com/data/products/16/thumbnail.jpg" }}
                                         resizeMode={"contain"}
                                     />
-                                    <Text style={tw`text-center`}>Juice</Text>
+                                    <Text style={tw`text-center`}>Skin...</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -157,13 +172,13 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={[...new Array(5).keys()]}
-                            renderItem={({ index }) => <ProductItem width={"6.5/8"} nav={this.props.navigation}/>}
+                            renderItem={({ index }) => <ProductItem width={"6.5/8"} nav={this.props.navigation} />}
                         />
                     </View>
                     {/* popular */}
                     <View style={tw`mt-5 mb-2 w-full`}>
                         <View style={tw`justify-between flex-row`}>
-                            <Text style={[tw`${typography.smText} mb-3`, { color: colors.BOX_BLACK }]}>Popular</Text>
+                            <Text style={[tw`${typography.smText} mb-3`, { color: colors.BOX_BLACK }]}>{"fdsdf"}</Text>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.ALL_PRODUCTS)}>
                                 <Text style={tw`${typography.smText}`}>See all</Text>
                             </TouchableOpacity>
@@ -180,7 +195,7 @@ export class Home extends Component {
                     </View>
                 </View>
             </ScrollView>
-        )
+           
     }
 }
 

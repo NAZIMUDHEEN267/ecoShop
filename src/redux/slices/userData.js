@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import checkUser from "../../utils/checkUser";
+import checkUser from "../../config/checkUser";
 
 const initialState = {
     data: {},
