@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import checkUser from "../../utils/checkUser";
 
 const initialState = {
-    data: {}
+    data: {},
+    userFirst: true,
 }
 
 const signSlice = createSlice({
@@ -14,13 +15,16 @@ const signSlice = createSlice({
         },
         setLogData: function (state, action) {
             state.data = action.payload;
+        },
+        setUser: function (state, action) {
+            state.userFirst = action.payload;
         }
 }
 })
 
-const { actions: { setSignData, setLogData }, reducer } = signSlice;
+const { actions: { setSignData, setLogData, setUser }, reducer } = signSlice;
 
-const mapStateToProps = (state) => ({ getData: state.dataReducer.data });
+const mapStateToProps = (state) => ({ getData: state.dataReducer });
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -41,6 +45,9 @@ const mapDispatchToProps = dispatch => {
             } else {
                 return isUser;
             }
+        },
+        setUserLog: (data) => {
+            dispatch(setUser(data));
         }
     }
 }

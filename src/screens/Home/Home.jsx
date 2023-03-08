@@ -9,6 +9,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Fontisto from "react-native-vector-icons/Fontisto";
 import CartImg from "../../assets/images/shopping_cart.png"
 import ProductItem from '../../components/ProductItem';
+import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/userData';
+import { connect } from "react-redux";
 
 export class Home extends Component {
     constructor(props) {
@@ -17,6 +19,10 @@ export class Home extends Component {
         this.state = {
             searchText: ""
         }
+    }
+
+    componentDidMount() {
+        this.props.setUserLog(false);
     }
 
     render() {
@@ -178,4 +184,4 @@ export class Home extends Component {
     }
 }
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

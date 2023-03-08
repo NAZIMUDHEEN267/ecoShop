@@ -8,13 +8,16 @@ import { Icon } from "@rneui/themed";
 import { TouchableOpacity } from "react-native";
 import tw from "twrnc";
 import HomeReview from "../screens/Home/HomeReview";
+import { connect } from "react-redux"
+import { mapStateToProps, mapDispatchToProps } from "../redux/slices/product";
 
 const Stack = createStackNavigator();
 
 export function HomeNavigator(props) {
+
     return (
-        <Stack.Navigator initialRouteName={navigation.PRODUCT}>
-            <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }}/>
+        <Stack.Navigator >
+            <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }} />
             <Stack.Screen
                 component={HomeAllCategories}
                 name={navigation.ALL_CATEGORIES}
@@ -50,11 +53,11 @@ export function HomeNavigator(props) {
                 }}
             />
             <Stack.Screen component={HomeAllProducts} name={navigation.ALL_PRODUCTS} options={{
-                title: "New arrivals",
+                title: props.productData.category,
                 headerStyle: tw`bg-gray-100`,
                 headerTitleAlign: "center",
                 headerRight: () => (
-                    <TouchableOpacity style={tw`h-full w-15 items-center justify-center`}>
+                    <TouchableOpacity onPress={() => props.setShowCategory(!props.productData.showCategory)} style={tw`h-full w-15 items-center justify-center`}>
                         <Icon type="antdesign" name="menu-unfold" />
                     </TouchableOpacity>
                 ),
@@ -88,4 +91,4 @@ export function HomeNavigator(props) {
     )
 }
 
-export default HomeNavigator
+export default connect(mapStateToProps, mapDispatchToProps)(HomeNavigator);

@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     cart: [],
     deleted: [],
-    delivered: []
+    delivered: [],
+    showCategory: false,
+    category: "New arrivals"
 }
 
 const productSlice = createSlice({
@@ -15,24 +17,32 @@ const productSlice = createSlice({
         },
         delProduct: function (state, action) {
             state.cart = state.cart.map(item => {
-                if(item.id !== action.payload.id) {
+                if (item.id !== action.payload.id) {
                     return item;
                 } else {
                     state.deleted.push(item);
                 }
             })
+        },
+        showCategory(state, action) {
+            state.showCategory = action.payload;
+        },
+        editCategory: function (state, action) {
+            state.category = action.payload;
         }
     }
 })
 
-const { actions: { setProduct, delProduct }, reducer } = productSlice;
+const { actions: { setProduct, delProduct, showCategory, editCategory }, reducer } = productSlice;
 
 const mapStateToProps = (state) => ({ productData: state.productReducer });
 
 const mapDispatchToProps = dispatch => {
     return {
         setProductData: (data) => dispatch(setProduct(data)),
-        delProductData: (data) => dispatch(delProduct(data))
+        delProductData: (data) => dispatch(delProduct(data)),
+        setShowCategory: (val) => dispatch(showCategory(val)),
+        setEditCategory: (str) => dispatch(editCategory(str))
     }
 }
 
