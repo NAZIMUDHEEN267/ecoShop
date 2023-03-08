@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
 import { TextInput } from 'react-native-gesture-handler';
@@ -25,7 +25,8 @@ export class EditAddress extends Component {
 
   render() {
     return (
-      <View style={tw`flex-1 p-3 justify-center`}>
+      <KeyboardAvoidingView behavior='height' style={tw`flex-1  p-3`}>
+
         <TextInput onChangeText={(val) => this.setState({ ...this.state, name: val })} value={this.state.name} placeholder='Name' style={tw`h-15 border-2 border-green-300 rounded pl-2 mb-2`} />
         <TextInput onChangeText={(val) => this.setState({ ...this.state, street: val })} value={this.state.street} placeholder='Street Address' style={tw`h-15 border-2 border-green-300 rounded pl-2 mb-2`} />
         <TextInput onChangeText={(val) => this.setState({ ...this.state, city: val })} value={this.state.city} placeholder='City/Town' style={tw`h-15 border-2 border-green-300 rounded pl-2 mb-2`} />
@@ -57,7 +58,7 @@ export class EditAddress extends Component {
         <Text style={[tw`mt-2 text-center text-gray-400`, { textDecorationLine: "underline" }]}
           onPress={() => this.props.navigation.navigate(navigation.PROFILE_SCREEN)}
         >Not now</Text>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }

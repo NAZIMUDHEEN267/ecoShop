@@ -7,6 +7,11 @@ import tw from "twrnc";
 import typography from "../theme/typography";
 
 export class Intro extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+
   render() {
     return (
       <StyledComponent component={View} style={[tw`flex-1`, {backgroundColor: colors.PRIMARY_COLOR}]}>

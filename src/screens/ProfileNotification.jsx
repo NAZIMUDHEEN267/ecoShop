@@ -22,7 +22,7 @@ export class ProfileNotification extends Component {
         <Text style={tw`mt-2 ${typography.mdSmText}`}>No Notification Yet!</Text>
         <Text style={{ color: colors.TEXT_LIGHT }}>Product or other related notifications are not available</Text>
         <TouchableOpacity
-          // onPress={this.props.route.getHome}
+          // onPress={this.props.navigation.goBack}
           activeOpacity={.7}
           style={[tw`w-45 p-3 bg-yellow-200 mt-4`, { backgroundColor: colors.PRIMARY_COLOR }]}>
           <Text style={tw`${typography.smText} text-white text-center`}>Go to Shop</Text>
