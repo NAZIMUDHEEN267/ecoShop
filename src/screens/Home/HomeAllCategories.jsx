@@ -2,7 +2,7 @@ import { Text, View, TouchableOpacity, Image } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
 import { typography } from '../theme';
-import { colors, spaces } from '../constants';
+import { colors, spaces } from '../../constants';
 
 export class HomeAllCategories extends Component {
   render() {

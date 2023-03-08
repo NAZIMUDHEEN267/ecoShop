@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import IntroItems from '../components/IntroItems'
-import Payment from "../assets/svg/payment.svg";
-import { navigation } from '../constants';
+import IntroItems from '../../components/IntroItems'
+import Payment from "../../assets/svg/payment.svg";
+import { navigation } from '../../constants';
 
 export class IntroPayment extends Component {
     constructor(props) {

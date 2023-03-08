@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import IntroItems from '../components/IntroItems'
-import Delivery from "../assets/svg/delivery.svg";
-import { navigation } from '../constants';
+import IntroItems from '../../components/IntroItems'
+import Delivery from "../../assets/svg/delivery.svg";
+import { navigation } from '../../constants';
 
 export class IntroDelivery extends Component {
     constructor(props) {

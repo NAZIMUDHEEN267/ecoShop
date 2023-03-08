@@ -2,8 +2,8 @@ import { Text, View, Image, TouchableOpacity, KeyboardAvoidingView } from 'react
 import React, { Component } from 'react'
 import tw from "twrnc";
 import Entypo from "react-native-vector-icons/Entypo";
-import { typography } from '../theme';
-import { colors, navigation, spaces } from '../constants';
+import { typography } from '../../theme';
+import { colors, navigation, spaces } from '../../constants';
 import { TextInput } from 'react-native-gesture-handler';
 import StarRating from 'react-native-star-rating-widget';
 export class HomeReview extends Component {

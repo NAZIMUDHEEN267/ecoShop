@@ -2,10 +2,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
 import { colors, navigation } from "../constants"; 
-import EditAddress from "../screens/EditAddress";
-import EditPayment from "../screens/EditPayment";
-import ProfileNotification from "../screens/ProfileNotification";
-import ProfileScreen from "../screens/ProfileScreen";
+import EditAddress from "../screens/Profile/EditAddress";
+import EditPayment from "../screens/Profile/EditPayment";
+import ProfileNotification from "../screens/Profile/ProfileNotification";
+import ProfileScreen from "../screens/Profile/ProfileScreen";
 
 const Stack = createStackNavigator();
 

@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import { Image, SearchBar } from 'react-native-elements';
 import tw from "twrnc";
 import Carousel from 'react-native-reanimated-carousel';
-import { colors, navigation, spaces } from '../constants';
-import { typography } from '../theme';
+import { colors, navigation, spaces } from '../../constants';
+import { typography } from '../../theme';
 import { ScrollView } from 'react-native-gesture-handler';
 import Fontisto from "react-native-vector-icons/Fontisto";
-import CartImg from "../assets/images/shopping_cart.png"
-import ProductItem from '../components/ProductItem';
+import CartImg from "../../assets/images/shopping_cart.png"
+import ProductItem from '../../components/ProductItem';
 
 export class Home extends Component {
     constructor(props) {

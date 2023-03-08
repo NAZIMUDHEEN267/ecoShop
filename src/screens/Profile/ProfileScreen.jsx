@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import tw from "twrnc";
 import { Avatar, Icon } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { colors, navigation, spaces } from '../constants';
-import { typography } from '../theme';
+import { colors, navigation, spaces } from '../../constants';
+import { typography } from '../../theme';
 import { DataTable } from 'react-native-paper';
 
 export class ProfileScreen extends Component {

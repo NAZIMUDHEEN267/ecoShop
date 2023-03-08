@@ -4,8 +4,8 @@ import tw from "twrnc";
 import { TextInput } from 'react-native-gesture-handler';
 import SelectDropdown from 'react-native-select-dropdown';
 import { Icon } from '@rneui/themed';
-import { colors, navigation } from '../constants';
-import { typography } from '../theme';
+import { colors, navigation } from '../../constants';
+import { typography } from '../../theme';
 
 export class EditAddress extends Component {
 

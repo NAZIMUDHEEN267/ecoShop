@@ -1,11 +1,11 @@
 import { Text, View } from 'react-native';
 import React, { Component } from 'react';
 import tw from "twrnc";
-import { colors, spaces } from '../constants';
+import { colors, spaces } from '../../constants';
 import { Icon, Image } from 'react-native-elements';
-import { typography } from '../theme';
+import { typography } from '../../theme';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import ProductDetails from '../components/ProductDetails';
+import ProductDetails from '../../components/ProductDetails';
 
 export class OrderDeliver extends Component {
   render() {

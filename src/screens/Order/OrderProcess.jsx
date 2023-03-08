@@ -1,9 +1,9 @@
 import { Text, View } from 'react-native';
 import React, { Component } from 'react';
-import { spaces } from '../constants';
+import { spaces } from '../../constants';
 import tw from "twrnc";
-import ProductDetails from '../components/ProductDetails';
-import ProductStatus from '../components/ProductStatus';
+import ProductDetails from '../../components/ProductDetails';
+import ProductStatus from '../../components/ProductStatus';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export class OrderProcess extends Component {

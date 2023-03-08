@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 import tw from "twrnc";
 import { Image } from 'react-native-elements/dist/image/Image';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { spaces, colors } from '../constants';
-import { typography } from '../theme';
+import { spaces, colors } from '../../constants';
+import { typography } from '../../theme';
 import Entypo from "react-native-vector-icons/Entypo";
 import { Icon } from '@rneui/themed';
 import SelectDropdown from 'react-native-select-dropdown'
-import ProductDetailsNavigator from '../navigations/ProductDetialsNavigator';
-import { mapStateToProps, mapDispatchToProps } from '../redux/slices/product';
+import ProductDetailsNavigator from '../../navigations/ProductDetialsNavigator';
+import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/product';
 import { connect } from "react-redux";
 
 export class HomeProduct extends Component {

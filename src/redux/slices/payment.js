@@ -14,13 +14,13 @@ const paymentSlice = createSlice({
     }
 })
 
-const { actions: { setPaymentDetails }, reducer } = productSlice;
+const { actions: { setPaymentDetails }, reducer } = paymentSlice;
 
 const mapStateToProps = (state) => ({ productData: state.paymentReducer });
 
 const mapDispatchToProps = dispatch => {
     return {
-        setProductData: (data) => dispatch(setPaymentDetails(data))
+        setPayment: (data) => dispatch(setPaymentDetails(data))
     }
 }
 

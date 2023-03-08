@@ -2,8 +2,8 @@ import { Text, View, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
 import { Icon } from 'react-native-elements';
-import { spaces, colors, navigation } from '../constants';
-import { typography } from '../theme';
+import { spaces, colors, navigation } from '../../constants';
+import { typography } from '../../theme';
 import { CommonActions } from '@react-navigation/native';
 
 

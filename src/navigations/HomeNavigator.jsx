@@ -1,13 +1,13 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { colors, navigation } from "../constants";
-import Home from "../screens/Home";
-import HomeAllCategories from "../screens/HomeAllCategories";
-import HomeAllProducts from "../screens/HomeAllProducts";
-import HomeProduct from "../screens/HomeProduct";
+import Home from "../screens/Home/Home";
+import HomeAllCategories from "../screens/Home/HomeAllCategories";
+import HomeAllProducts from "../screens/Home/HomeAllProducts";
+import HomeProduct from "../screens/Home/HomeProduct";
 import { Icon } from "@rneui/themed";
 import { TouchableOpacity } from "react-native";
 import tw from "twrnc";
-import HomeReview from "../screens/HomeReview";
+import HomeReview from "../screens/Home/HomeReview";
 
 const Stack = createStackNavigator();
 

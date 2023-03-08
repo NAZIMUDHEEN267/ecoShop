@@ -1,9 +1,9 @@
 import { Text, View, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
-import { colors } from '../constants';
-import { typography } from '../theme';
-import PaymentNavigator from '../navigations/PaymentNavigator';
+import { colors } from '../../constants';
+import { typography } from '../../theme';
+import PaymentNavigator from '../../navigations/PaymentNavigator';
 
 export class EditPayment extends Component {
   constructor(props) {

@@ -1,8 +1,8 @@
 import { View } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
-import ProductDetails from '../components/ProductDetails';
-import { spaces } from '../constants';
+import ProductDetails from '../../components/ProductDetails';
+import { spaces } from '../../constants';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export class OrderCancel extends Component {

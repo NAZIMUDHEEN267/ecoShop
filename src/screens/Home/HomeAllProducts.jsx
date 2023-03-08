@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
-import ProductItem from '../components/ProductItem';
+import ProductItem from '../../components/ProductItem';
 import tw from "twrnc";
 import { ScrollView, TouchableOpacity } from 'react-native';
 import { typography } from '../theme';

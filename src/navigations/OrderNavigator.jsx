@@ -1,10 +1,9 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Text } from "react-native-elements";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { colors, navigation } from "../constants";
-import OrderDeliver from "../screens/OrderDeliver";
-import OrderCancel from "../screens/OrderCancel";
-import OrderProcess from "../screens/OrderProcess";
+import OrderDeliver from "../screens/Order/OrderDeliver";
+import OrderCancel from "../screens/Order/OrderCancel";
+import OrderProcess from "../screens/Order/OrderProcess";
 
 const TopTab = createMaterialTopTabNavigator();
 
