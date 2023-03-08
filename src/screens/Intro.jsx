@@ -11,7 +11,6 @@ export class Intro extends Component {
     super(props);
   }
 
-
   render() {
     return (
       <StyledComponent component={View} style={[tw`flex-1`, {backgroundColor: colors.PRIMARY_COLOR}]}>

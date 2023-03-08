@@ -8,14 +8,31 @@ const signSlice = createSlice({
     initialState,
     name: "sign",
     reducers: {
-        setSignData: function(state, action) {
+        setSignData: function (state, action) {
             state.data = action.payload;
+
+
         }
     }
 })
 
 const { actions: { setSignData }, reducer } = signSlice;
 
-export default reducer;
-export { setSignData }
+const mapStateToProps = (state) => ({ signData: state.signReducer.data });
 
+const mapDispatchToProps = dispatch => {
+    return {
+        setData: (data) => {
+            return new Promise(function (resolve, reject) {
+                if (1 == 1) {
+                    resolve("ok");
+                } else {
+                    reject("good")
+                }
+            })
+        }
+    }
+}
+
+export default reducer;
+export { mapStateToProps, mapDispatchToProps };
