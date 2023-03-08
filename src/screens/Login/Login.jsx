@@ -5,7 +5,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import { colors, navigation } from '../../constants';
 import { typography } from '../../theme';
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/data';
+import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/userData';
 
 export class Login extends Component {
 

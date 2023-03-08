@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import IntroItems from '../components/IntroItems'
 import Shopping from "../assets/svg/shopping.svg";
 import { navigation } from '../constants';
+import { connect } from "react-redux";
 
 export class IntroProduct extends Component {
     constructor(props) {
@@ -15,8 +16,8 @@ export class IntroProduct extends Component {
     }
     
     render() {
-    return <IntroItems svg={Shopping} event={this.handleEvent} title={"Choose Product"} />
+    return <IntroItems svg={Shopping} event={this.handleEvent} title={"Choose Product"} nav={this.props.navigation}/>
   }
 }
 
-export default IntroProduct
+export default connect()(IntroProduct)

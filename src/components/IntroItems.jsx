@@ -1,7 +1,6 @@
-import { Animated, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react';
-import Shopping from "../assets/svg/shopping.svg";
-import { colors, spaces } from '../constants';
+import { colors, navigation, spaces } from '../constants';
 import tw from "twrnc";
 import { StyledComponent } from "nativewind";
 import { typography } from '../theme';
@@ -16,9 +15,15 @@ export class IntroItems extends Component {
             <StyledComponent component={View} style={tw`${spaces['p-normal']}`}>
                 {
                     this.props.title === "Choose Product" && 
-                    (<StyledComponent component={Text} style={tw`text-right ${typography.smText}`}>
-                        Skip
-                    </StyledComponent>)
+                    (
+                        <StyledComponent component={TouchableOpacity} onPress={() => {
+                            this.props.nav.navigate(navigation.BOTTOM_TAB_NAVIGATOR);
+                        }}>
+                            <StyledComponent component={Text} style={tw`text-right ${typography.smText}`}>
+                                Skip
+                            </StyledComponent>
+                        </StyledComponent>
+                    )
                 }
                 <this.props.svg height={spaces.heightHalf} width={spaces.width - 32} />
                 <StyledComponent component={View} style={{ height: spaces.heightHalf, width: spaces.width }}>
@@ -38,4 +43,4 @@ export class IntroItems extends Component {
     }
 }
 
-export default IntroItems
+export default IntroItems;

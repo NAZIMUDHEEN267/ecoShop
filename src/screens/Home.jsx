@@ -113,7 +113,6 @@ export class Home extends Component {
                             autoPlayInterval={2000}
                             data={[...new Array(6).keys()]}
                             scrollAnimationDuration={2000}
-                            onSnapToItem={(index) => console.log('current index:', index)}
                             renderItem={({ index }) => (
                                 <View
                                     style={[{
@@ -179,4 +178,4 @@ export class Home extends Component {
     }
 }
 
-export default Home
+export default Home;

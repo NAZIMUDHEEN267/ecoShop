@@ -7,7 +7,7 @@ import { Icon } from '@rneui/themed';
 import { colors, navigation } from '../../constants';
 import { typography } from '../../theme';
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/data';
+import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/userData';
 
 export class Sign extends Component {
 
