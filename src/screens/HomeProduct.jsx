@@ -9,10 +9,12 @@ import Entypo from "react-native-vector-icons/Entypo";
 import { Icon } from '@rneui/themed';
 import SelectDropdown from 'react-native-select-dropdown'
 import ProductDetailsNavigator from '../navigations/ProductDetialsNavigator';
+import { mapStateToProps, mapDispatchToProps } from '../redux/slices/product';
+import { connect } from "react-redux";
 
 export class HomeProduct extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       unitExpanded: false,
@@ -35,7 +37,7 @@ export class HomeProduct extends Component {
             <View style={tw`bg-white h-full w-full ${spaces['p-normal']}`}>
               <View style={[tw`justify-center items-center flex-row mb-4`, { marginTop: -39 }]}>
                 {
-                  [0,2,23].map((_, i) => (
+                  [0, 2, 23].map((_, i) => (
                     <TouchableOpacity activeOpacity={.7}
                       key={i}
                       style={[tw`rounded h-24 w-24 mr-2`, { elevation: 10 }]}
@@ -124,7 +126,9 @@ export class HomeProduct extends Component {
               <Icon name='shoppingcart' type='antdesign' />
             </View>
           </View>
-          <TouchableOpacity activeOpacity={.7} style={[tw`h-12 justify-center rounded-xl ml-3`, { backgroundColor: colors.PRIMARY_COLOR, width: spaces.width * .8 }]}>
+          <TouchableOpacity
+            onPress={() => this.props.setProductData({id: 1, name: "watermelon"})}
+            activeOpacity={.7} style={[tw`h-12 justify-center rounded-xl ml-3`, { backgroundColor: colors.PRIMARY_COLOR, width: spaces.width * .8 }]}>
             <Text style={tw`text-center text-white ${typography.smText}`}>+ Add to cart</Text>
           </TouchableOpacity>
         </View>
@@ -133,4 +137,4 @@ export class HomeProduct extends Component {
   }
 }
 
-export default HomeProduct
+export default connect(mapStateToProps, mapDispatchToProps)(HomeProduct);

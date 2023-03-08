@@ -13,8 +13,8 @@ const Stack = createStackNavigator();
 
 export function HomeNavigator(props) {
     return (
-        <Stack.Navigator >
-            <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }} />
+        <Stack.Navigator initialRouteName={navigation.PRODUCT}>
+            <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }}/>
             <Stack.Screen
                 component={HomeAllCategories}
                 name={navigation.ALL_CATEGORIES}
