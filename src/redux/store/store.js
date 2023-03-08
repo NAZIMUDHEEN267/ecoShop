@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import signReducer from "../slices/sign";
+import dataReducer from "../slices/data";
 
 const store = configureStore({
     reducer: {
-        signReducer,
+        dataReducer,
     }
 })
 

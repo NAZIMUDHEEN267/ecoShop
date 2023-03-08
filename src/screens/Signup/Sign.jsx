@@ -7,14 +7,13 @@ import { Icon } from '@rneui/themed';
 import { colors, navigation } from '../../constants';
 import { typography } from '../../theme';
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/sign';
+import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/data';
 
 export class Sign extends Component {
 
     constructor(props) {
         super(props);
 
-        
         this.state = {
             name: "",
             street: "",
@@ -24,6 +23,15 @@ export class Sign extends Component {
             zip: "",
             phoneNo: "",
             passwd: ""
+        }
+
+        this.checkValLength = () => {
+            for (const key in this.state) {
+                if (this.state[key].length === 0) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -60,15 +68,16 @@ export class Sign extends Component {
                     <TextInput onChangeText={(val) => this.setState({ ...this.state, phoneNo: val })} value={this.state.phoneNo} placeholder='Phone no' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
                     <TextInput onChangeText={(val) => this.setState({ ...this.state, passwd: val })} secureTextEntry value={this.state.passwd} placeholder='Password' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
 
-                    <TouchableOpacity onPress={() => {
-                        this.props.setData(this.state)
-                        .then(() => {
-                            this.props.navigation.navigate(navigation.INTRO)
-                        })
-                        .catch(err => {
-                            console.log(err)
-                        })
-                    }} style={[tw`mt-5 h-13 w-full justify-center rounded`, { backgroundColor: colors.PRIMARY_COLOR }]}>
+                    <TouchableOpacity onPress={async () => {
+                        if(await this.props.setSignData(this.state)){
+                            console.log("hello world")
+                        } else {
+                            this.props.navigation.navigate(navigation.INTRO);
+                        }
+                    }}
+                        disabled={this.checkValLength()}
+                        style={[tw`mt-5 h-13 w-full justify-center rounded`, { backgroundColor: this.checkValLength() ? colors.PRIMARY_LIGHT : colors.PRIMARY_COLOR }]}
+                    >
                         <Text style={tw`${typography.smText} text-center text-white`}>Create Account</Text>
                     </TouchableOpacity>
 
