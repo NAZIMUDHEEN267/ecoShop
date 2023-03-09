@@ -24,6 +24,7 @@ export class HomeProduct extends Component {
     }
 
     this.productObj = this.props.route.params;
+    this.productObj.time = new Date().toISOString();
   }
 
   render() {
@@ -128,12 +129,12 @@ export class HomeProduct extends Component {
         <View style={[tw`w-full items-center justify-center flex-row h-18 bg-white border-t border-gray-300`, { elevation: 45 }]}>
           <View style={{ backgroundColor: colors.PRIMARY_LIGHT, padding: 10, borderRadius: 5, width: spaces.width * .130, alignItems: "center", justifyContent: "center" }}>
             <View>
-              <Text style={tw`absolute -top-2 -right-1 z-2 h-5 w-2.7 text-center text-white rounded ${typography.smText} bg-green-500`}>0</Text>
+              <Text style={tw`absolute -top-2 -right-1 z-2 h-5 w-2.7 text-center text-white rounded ${typography.smText} bg-green-500`}>{this.props.productData.cart.length}</Text>
               <Icon name='shoppingcart' type='antdesign' />
             </View>
           </View>
           <TouchableOpacity
-            onPress={() => this.props.setProductData({ id: 1, name: "watermelon" })}
+            onPress={() => this.props.setProductData(this.productObj)}
             activeOpacity={.7} style={[tw`h-12 justify-center rounded-xl ml-3`, { backgroundColor: colors.PRIMARY_COLOR, width: spaces.width * .8 }]}>
             <Text style={tw`text-center text-white ${typography.smText}`}>+ Add to cart</Text>
           </TouchableOpacity>

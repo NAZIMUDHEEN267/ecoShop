@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Fontisto from "react-native-vector-icons/Fontisto";
 import CartImg from "../../assets/images/shopping_cart.png"
 import ProductItem from '../../components/ProductItem';
-import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/userData';
+import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/product';
 import { connect } from "react-redux";
 import { ActivityIndicator } from 'react-native-paper';
 const data = require("../../data/data.json")
@@ -36,7 +36,7 @@ export class Home extends Component {
     }
 
     componentDidMount() {
-        this.props.setUserLog(false);
+        // this.props.setUserLog(false);
         this.setState({ ...this.state, data: data.products, loading: false })
     }
 
@@ -56,8 +56,8 @@ export class Home extends Component {
                             <Text style={tw`${typography.mdText} ml-2`}>Eco Shop</Text>
                         </View>
                         <View>
-                            <TouchableOpacity>
-                                <Text style={tw`absolute -top-2 -right-1 z-2 h-5 w-2.7 text-center rounded ${typography.smText} bg-yellow-300`}>0</Text>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.CART)}>
+                                <Text style={tw`absolute -top-2 -right-1 z-2 h-5 w-2.7 text-center rounded ${typography.smText} bg-yellow-300`}>{this.props.productData.cart.length}</Text>
                                 <Image source={CartImg} style={{ height: 32, width: 32 }} resizeMode={"contain"} />
                             </TouchableOpacity>
                         </View>
@@ -178,7 +178,7 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={this.categoryMaker("groceries")}
-                            renderItem={({ item, index }) => <ProductItem item={item} width={"6.5/8"} nav={this.props.navigation} />}
+                            renderItem={({ item, index }) => <ProductItem item={item} width={"6.5/8"} nav={this.props.navigation} dispatch={this.props.setProductData} />}
                         />
                     </View>
                     {/* popular */}
@@ -196,7 +196,7 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={this.categoryMaker("skincare")}
-                            renderItem={({ item, index }) => <ProductItem item={item} width={"6.5/8"} nav={this.props.navigation} />}
+                            renderItem={({ item, index }) => <ProductItem item={item} width={"6.5/8"} nav={this.props.navigation} dispatch={this.props.setProductData}/>}
                         />
                     </View>
                 </View>

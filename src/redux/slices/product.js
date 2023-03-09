@@ -17,7 +17,7 @@ const productSlice = createSlice({
             state.cart.push(action.payload);
         },
         delProduct: function (state, action) {
-            state.cart = state.cart.map(item => {
+            state.cart = state.cart.filter(item => {
                 if (item.id !== action.payload.id) {
                     return item;
                 } else {

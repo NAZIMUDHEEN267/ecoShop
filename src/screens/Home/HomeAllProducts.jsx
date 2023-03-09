@@ -16,6 +16,7 @@ export class HomeAllProducts extends Component {
     this.state = {
       data: null
     }
+
   }
 
   componentDidMount() {
@@ -58,7 +59,7 @@ export class HomeAllProducts extends Component {
           {/* <Text onPress={() => this.setState({ ...this.state, show: !this.state.show })} >hello</Text> */}
           {
             this.state.data.map((item, i) => (
-              <ProductItem item={item} width={"3.8/8"} key={i} nav={this.props.navigation} />
+              <ProductItem item={item} width={"3.8/8"} key={i} nav={this.props.navigation} dispatch={this.props.setProductData}/>
             ))
           }
         </View>

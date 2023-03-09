@@ -38,7 +38,7 @@ export class ProductItem extends Component {
                     <Text style={[tw`${typography.smText}`, { textDecorationLine: "line-through", textDecorationStyle: "solid", color: colors.TEXT_LIGHT }]}>₹{this.props.item.price * 50}</Text>
                     <Text style={tw`${typography.smText} text-red-500`}>₹{(this.props.item.price * 50) - Math.floor(this.discount)}</Text>
                 </View>
-                <TouchableOpacity style={[tw`mt-2 p-2 rounded`, { backgroundColor: colors.PRIMARY_LIGHT }]}>
+                <TouchableOpacity style={[tw`mt-2 p-2 rounded`, { backgroundColor: colors.PRIMARY_LIGHT }]} onPress={() => this.props.dispatch(this.props.item)}>
                     <Text style={tw`text-center`}>+ Add to cart</Text>
                 </TouchableOpacity>
             </TouchableOpacity>
