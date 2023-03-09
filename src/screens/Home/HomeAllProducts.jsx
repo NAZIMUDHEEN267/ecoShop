@@ -7,12 +7,19 @@ import { typography } from '../theme';
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/product';
 
+const products = require("../../data/data.json");
 export class HomeAllProducts extends Component {
 
   constructor(props) {
     super(props);
 
-    console.log(this.props.setEditCategory);
+    this.state = {
+      data: null
+    }
+  }
+
+  componentDidMount() {
+    this.setState({data: products.products});
   }
 
   state = {
@@ -29,7 +36,7 @@ export class HomeAllProducts extends Component {
   ]
 
   render() {
-    return (
+    return this.state.data ? 
       <ScrollView style={tw`h-full w-full`} onScroll={(e) => this.setState({ scrollY: e.nativeEvent.contentOffset.y })}>
         <View style={tw`flex-wrap flex-1 flex-row p-3`}>
           <View style={[tw`p-3 bg-white right-2 absolute z-2 top-${this.state.scrollY / 4}`, { elevation: 45, display: this.props.productData.showCategory ? "flex" : "none" }]}>
@@ -50,13 +57,13 @@ export class HomeAllProducts extends Component {
           </View>
           {/* <Text onPress={() => this.setState({ ...this.state, show: !this.state.show })} >hello</Text> */}
           {
-            Array(10).fill(0).map((item, i) => (
-              <ProductItem width={"3.8/8"} key={i} nav={this.props.navigation} />
+            this.state.data.map((item, i) => (
+              <ProductItem item={item} width={"3.8/8"} key={i} nav={this.props.navigation} />
             ))
           }
         </View>
       </ScrollView>
-    )
+      : null
   }
 }
 

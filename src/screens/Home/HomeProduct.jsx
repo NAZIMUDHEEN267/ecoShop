@@ -19,8 +19,11 @@ export class HomeProduct extends Component {
     this.state = {
       unitExpanded: false,
       boxExpanded: false,
-      previewBorder: 0
+      previewBorder: 0,
+      mainImg: this.props.route.params.images[0]
     }
+
+    this.productObj = this.props.route.params;
   }
 
   render() {
@@ -29,7 +32,7 @@ export class HomeProduct extends Component {
         <ScrollView>
           <View style={tw`w-full`}>
             <Image
-              source={{ uri: "https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg" }}
+              source={{ uri: this.state.mainImg }}
               style={{ height: spaces.heightHalf / 1.4 }}
               resizeMode={"cover"}
             />
@@ -37,18 +40,21 @@ export class HomeProduct extends Component {
             <View style={tw`bg-white h-full w-full ${spaces['p-normal']}`}>
               <View style={[tw`justify-center items-center flex-row mb-4`, { marginTop: -39 }]}>
                 {
-                  [0, 2, 23].map((_, i) => (
+                  this.productObj.images.map((img, i) => i < 3 ? (
                     <TouchableOpacity activeOpacity={.7}
                       key={i}
                       style={[tw`rounded h-24 w-24 mr-2`, { elevation: 10 }]}
-                      onPress={() => this.setState({ ...this.state, previewBorder: i })}
+                      onPress={() => this.setState({ ...this.state, previewBorder: i, mainImg: img })}
                     >
                       <Image
-                        source={{ uri: "https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg" }}
+                        source={{ uri: img }}
                         style={tw`w-full h-full rounded-xl ${i === this.state.previewBorder ? "border-2 border-green-400" : ""}`}
                       />
                     </TouchableOpacity>
-                  ))
+                  )
+                    :
+                    null
+                  )
                 }
               </View>
 
@@ -77,7 +83,7 @@ export class HomeProduct extends Component {
                 <View style={tw`w-1/2`}>
                   <Text>WEIGHT</Text>
                   <SelectDropdown
-                    data={[.5, 1, 2, 3, 4].map(item => item + " Kg")}
+                    data={[.5, 1, 2, 3, 4].map(item => item)}
                     buttonStyle={tw`bg-gray-100 rounded mt-2 w-5/6`}
                     defaultButtonText='Select Unit'
                     buttonTextStyle={tw`text-base`}
@@ -127,7 +133,7 @@ export class HomeProduct extends Component {
             </View>
           </View>
           <TouchableOpacity
-            onPress={() => this.props.setProductData({id: 1, name: "watermelon"})}
+            onPress={() => this.props.setProductData({ id: 1, name: "watermelon" })}
             activeOpacity={.7} style={[tw`h-12 justify-center rounded-xl ml-3`, { backgroundColor: colors.PRIMARY_COLOR, width: spaces.width * .8 }]}>
             <Text style={tw`text-center text-white ${typography.smText}`}>+ Add to cart</Text>
           </TouchableOpacity>

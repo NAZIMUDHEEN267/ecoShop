@@ -25,23 +25,27 @@ export class Home extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.setUserLog(false);
-        this.setState({ ...this.state, data: data.products, loading: false})
+    categoryMaker(searchItem) {
+        const values = this.state.data.filter((item) => {
+            if(item.category === searchItem) {
+                return item;
+            }
+        })
+
+        return values;
     }
 
-    componentDidUpdate() {
-        this.state.data.forEach(item => {
-            console.log(item.category);
-        })
+    componentDidMount() {
+        this.props.setUserLog(false);
+        this.setState({ ...this.state, data: data.products, loading: false })
     }
 
     render() {
-        return this.state.loading ? 
+        return this.state.loading ?
             <View>
                 <ActivityIndicator />
             </View>
-        : 
+            :
             <ScrollView style={tw`bg-gray-100`}>
 
                 {/* header */}
@@ -132,35 +136,37 @@ export class Home extends Component {
                             height={150}
                             autoPlay={true}
                             autoPlayInterval={2000}
-                            data={[...new Array(6).keys()]}
+                            data={this.state.data}
                             scrollAnimationDuration={2000}
-                            renderItem={({ index }) => (
-                                <View
-                                    style={[{
-                                        flex: 1,
-                                        flexDirection: "row",
-                                        justifyContent: "space-between"
-                                    }, tw`bg-white ml-2`]}
-                                >
-                                    <View style={tw`p-1 items-center h-full mt-2 w-1/2 `}>
-                                        <Text style={[{ color: colors.PRIMARY_TEXT, textAlign: "left" }]}>Fresh grocery</Text>
-                                        <Text style={tw`${typography.smText}`}>There you can Buy your all of grocery</Text>
-                                        <Text style={tw`mt-3 bg-yellow-300 p-2 rounded ${typography.smText}`}>Shop now ></Text>
+                            renderItem={({ item, index }) => {
+                                return (
+                                    <View
+                                        style={[{
+                                            flex: 1,
+                                            flexDirection: "row",
+                                            justifyContent: "space-between"
+                                        }, tw`bg-white ml-2`]}
+                                    >
+                                        <View style={tw`p-1 items-center h-full mt-2 w-1/2 `}>
+                                            <Text style={[{ color: colors.PRIMARY_TEXT, textAlign: "left" }]}>Quality products</Text>
+                                            <Text style={tw`${typography.smText}`}>{item.description.substring(0, 30)}</Text>
+                                            <Text style={tw`mt-3 bg-yellow-300 p-2 rounded ${typography.smText}`}>{"Shop now >"}</Text>
+                                        </View>
+                                        <Image
+                                            source={{ uri: item.thumbnail }}
+                                            style={[tw`h-full`, { width: spaces.width / 2.5 }]}
+                                            resizeMode={"contain"}
+                                        />
                                     </View>
-                                    <Image
-                                        source={{ uri: "https://cdn2.vectorstock.com/i/1000x1000/60/51/fruits-and-vegetables-group-cartoon-vector-1356051.jpg" }}
-                                        style={[tw`h-full`, { width: spaces.width / 2.5 }]}
-                                        resizeMode={"cover"}
-                                    />
-                                </View>
-                            )}
+                                )
+                            }}
                         />
                     </View>
 
-                    {/* popular */}
+                    {/* fragments */}
                     <View style={tw`mt-5 mb-2 w-full`}>
                         <View style={tw`justify-between flex-row`}>
-                            <Text style={[tw`${typography.smText} mb-3`, { color: colors.BOX_BLACK }]}>Popular</Text>
+                            <Text style={[tw`${typography.smText} mb-3`, { color: colors.BOX_BLACK }]}>Grocery</Text>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.ALL_PRODUCTS)}>
                                 <Text style={tw`${typography.smText}`}>See all</Text>
                             </TouchableOpacity>
@@ -171,14 +177,14 @@ export class Home extends Component {
                             height={spaces.heightHalf * .6}
                             style={{ width: spaces.width }}
                             loop
-                            data={[...new Array(5).keys()]}
-                            renderItem={({ index }) => <ProductItem width={"6.5/8"} nav={this.props.navigation} />}
+                            data={this.categoryMaker("groceries")}
+                            renderItem={({ item, index }) => <ProductItem item={item} width={"6.5/8"} nav={this.props.navigation} />}
                         />
                     </View>
                     {/* popular */}
                     <View style={tw`mt-5 mb-2 w-full`}>
                         <View style={tw`justify-between flex-row`}>
-                            <Text style={[tw`${typography.smText} mb-3`, { color: colors.BOX_BLACK }]}>{"fdsdf"}</Text>
+                            <Text style={[tw`${typography.smText} mb-3`, { color: colors.BOX_BLACK }]}>Skincare</Text>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.ALL_PRODUCTS)}>
                                 <Text style={tw`${typography.smText}`}>See all</Text>
                             </TouchableOpacity>
@@ -189,13 +195,13 @@ export class Home extends Component {
                             height={spaces.heightHalf * .6}
                             style={{ width: spaces.width }}
                             loop
-                            data={[...new Array(5).keys()]}
-                            renderItem={({ index }) => <ProductItem width={"6.5/8"} nav={this.props.navigation} />}
+                            data={this.categoryMaker("skincare")}
+                            renderItem={({ item, index }) => <ProductItem item={item} width={"6.5/8"} nav={this.props.navigation} />}
                         />
                     </View>
                 </View>
             </ScrollView>
-           
+
     }
 }
 

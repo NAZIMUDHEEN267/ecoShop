@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 export function HomeNavigator(props) {
 
     return (
-        <Stack.Navigator >
+        <Stack.Navigator initialRouteName={navigation.HOME}>
             <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }} />
             <Stack.Screen
                 component={HomeAllCategories}
