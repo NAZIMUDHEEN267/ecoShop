@@ -12,14 +12,16 @@ import { connect } from "react-redux"
 import { mapStateToProps, mapDispatchToProps } from "../redux/slices/product";
 import Cart from "../screens/Home/Cart";
 import PaymentScreen from "../screens/Home/PaymentScreen";
+import SearchPage from "../screens/Home/SearchPage";
 
 const Stack = createStackNavigator();
 
 export function HomeNavigator(props) {
 
     return (
-        <Stack.Navigator initialRouteName={navigation.PAYMENT}>
+        <Stack.Navigator initialRouteName={navigation.HOME}>
             <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }} />
+            <Stack.Screen component={SearchPage} name={navigation.SEARCH}  />
             <Stack.Screen
                 component={HomeAllCategories}
                 name={navigation.ALL_CATEGORIES}

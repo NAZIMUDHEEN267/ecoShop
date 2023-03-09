@@ -10,13 +10,14 @@ import Login from "../screens/Login/Login";
 import Sign from "../screens/Signup/Sign";
 import BottomTabNavigator from "./BottomTabNavigator";
 import { StripeProvider } from '@stripe/stripe-react-native';
+import { STRIPE_PUBLISH_KEY } from "@env";
 
 const Stack = createStackNavigator();
 
 export default IntroNavigation = () => {
     return (
         <Provider store={store}>
-            <StripeProvider publishableKey={`pk_test_51MjghkSEmbFcNWbTdJNoN5DcPEgXrvVkSHppwAl8CUf2Pr3i7efxzD6hXbEKOZ5TyHI4292zDFkGUbjEpJp3W2rh00KVMUT526`}>
+            <StripeProvider publishableKey={STRIPE_PUBLISH_KEY}>
                 <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.BOTTOM_TAB_NAVIGATOR}>
                     <Stack.Screen name={navigation.LOGIN} component={Login} />
                     <Stack.Screen name={navigation.SIGN_UP} component={Sign} />

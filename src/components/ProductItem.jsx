@@ -25,11 +25,7 @@ export class ProductItem extends Component {
                 />
                 {/* stars */}
                 <View style={tw`mt-1 mb-1 flex-row items-center justify-center`}>
-                    <Entypo name='star' size={15} color={"#db9004"} />
-                    <Entypo name='star' size={15} color={"#db9004"} />
-                    <Entypo name='star' size={15} color={"#db9004"} />
-                    <Entypo name='star' size={15} color={"#db9004"} />
-                    <Entypo name='star' size={15} color={"#db9004"} />
+                    {Array(5).fill(0).map(() => <Entypo name='star' size={15} color={"#db9004"} />)}
                 </View>
                 <Text style={tw`${typography.smText} text-center`}>{this.props.item.title.substring(0, 15)}...</Text>
 

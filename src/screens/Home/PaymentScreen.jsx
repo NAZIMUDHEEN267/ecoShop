@@ -1,13 +1,25 @@
-import { CardField, CardFieldInput, useStripe, PaymentSheet } from "@stripe/stripe-react-native";
-import { View, Text } from 'react-native'
-import React, {useState} from 'react'
+import { useStripe, CardField } from "@stripe/stripe-react-native";
+import { View, Text, Alert } from 'react-native'
+import React from 'react'
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PaymentScreen = () => {
-    const [card, setCard] = useState(CardFieldInput.Details | null);
-    const { confirmPayment, handleCardAction } = useStripe();
+    const { confirmPayment } = useStripe();
 
     return (
-       <PaymentSheet />
+        <View>
+            <TouchableOpacity onPress={confirmPayment}>
+                <Text>helk</Text>
+            </TouchableOpacity>
+
+            <CardField 
+                postalCodeEnabled={false}
+                style={{
+                    height: 50,
+                    width: "100%"
+                }}
+            />
+        </View>
     )
 }
 
