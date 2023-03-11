@@ -8,6 +8,10 @@ import { colors, navigation } from '../../constants';
 import { typography } from '../../theme';
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/userData';
+import StoreCredentials from '../../utils/storeCredentials';
+
+new StoreCredentials("hel", 32).secureCredentials();
+new StoreCredentials("h", 23).getCredentials()
 
 export class Sign extends Component {
 

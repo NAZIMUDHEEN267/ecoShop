@@ -2635,6 +2635,11 @@
   dependencies:
     "tweetnacl" "^0.14.3"
 
+"bcrypt-react-native@^1.1.1":
+  "integrity" "sha512-te5hqMgS+8w4N5EMih0cWIUgfNeFP0mFWynf6Vmrxo1gUa2zv7hYNUbLyztd0xYuN3vW3qHG1maEUa8FOA42lw=="
+  "resolved" "https://registry.npmjs.org/bcrypt-react-native/-/bcrypt-react-native-1.1.1.tgz"
+  "version" "1.1.1"
+
 "binary-extensions@^2.0.0":
   "integrity" "sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA=="
   "resolved" "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.2.0.tgz"
@@ -7193,6 +7198,11 @@
   "integrity" "sha512-7S3pAuPaQJlhax6EZ4JMsDNpj05TfuzX9gPgWLrFfAIWIFLuJ6aDQYAZy2TEI9QJALPoWrj8LWaqP/DGYh14pw=="
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.15.tgz"
   "version" "0.71.15"
+
+"react-native-keychain@^8.1.1":
+  "integrity" "sha512-8fxgeHKwGcL657eAYpdBTkDIxNhbIHI+kyyO0Yac2dgVAN184JoIwQcW2z6snahwDaCObQOu0biLFHnsH+4KSg=="
+  "resolved" "https://registry.npmjs.org/react-native-keychain/-/react-native-keychain-8.1.1.tgz"
+  "version" "8.1.1"
 
 "react-native-pager-view@*", "react-native-pager-view@^7.0.0-rc.0", "react-native-pager-view@>= 4.0.0":
   "integrity" "sha512-6DDvsLle8T1V1BN9VexIwNhXr+bzmGuL0zPwtn3bXpnmsLDcTFY4SMJqze4P1ZRhCJNb0Usuwh+lwsaRfwmvWg=="
