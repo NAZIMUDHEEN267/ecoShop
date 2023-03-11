@@ -63,5 +63,4 @@ yarn-error.log
 .metro-health-check*
 
 # ENV 
-.env
-./.env
+.env.*
