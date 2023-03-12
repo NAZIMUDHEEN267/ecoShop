@@ -32,10 +32,10 @@ export class Login extends Component {
           <TouchableOpacity onPress={async () => {
             const status = await checkUser("login", this.state);
 
-            if (!status) {
-              Alert.alert("login failed", "username or password error");
+            if (status.status === 404) {
+              Alert.alert("login failed", status.message);
             } else {
-              this.props.
+              this.props.setLogData(status.data)
               this.props.navigation.navigate(navigation.INTRO);
             }
           }}

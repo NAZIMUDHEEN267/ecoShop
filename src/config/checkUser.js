@@ -7,22 +7,17 @@ export default async function checkUser(value, clientData) {
     switch (value) {
         case "login": {
             try {
-                const credentialUsername = await new StoreCredentials.getCredentials();
-
                 if (credentialUsername) {
+                    const credentialUsername = await new StoreCredentials.getCredentials();
                     const data = realm.objects("Sign").filtered(`username = ${JSON.stringify(credentialUsername)}`)[0];
-
-                    return {status: 200, data: Object.assign(data, {passwd: null})};
+                    return { status: 200, data: Object.assign(data, { passwd: null }) };
                 } else if (findUser.length > 0 && findUser[0].passwd === clientData.passwd) {
                     await new StoreCredentials(clientData.username, clientData.passwd).secureCredentials();
-                    realm.write(() => {
-                        realm.create("Login", {
-                            access: true
-                        })
-                    })
-                    return true;
+                    const credentialUsername = await new StoreCredentials.getCredentials();
+                    const data = realm.objects("Sign").filtered(`username = ${JSON.stringify(credentialUsername)}`)[0];
+                    return { status: 200, data: Object.assign(data, { passwd: null }) };
                 } else {
-                    return false;
+                    return { status: 404, message: "username or password error" };
                 }
 
             } catch (error) {
@@ -52,9 +47,9 @@ export default async function checkUser(value, clientData) {
                         })
                     })
 
-                    const newObj = Object.assign(realm.objects("Sign"[0]), {passwd: null});
+                    const newObj = Object.assign(realm.objects("Sign"[0]), { passwd: null });
 
-                    return { status: 200, data:  newObj}
+                    return { status: 200, data: newObj }
                 }
 
             } catch (error) {
