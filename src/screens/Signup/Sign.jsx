@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, KeyboardAvoidingView, Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
 import { TextInput } from 'react-native-gesture-handler';
@@ -8,10 +8,7 @@ import { colors, navigation } from '../../constants';
 import { typography } from '../../theme';
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/userData';
-import StoreCredentials from '../../utils/storeCredentials';
-
-new StoreCredentials("hel", 32).secureCredentials();
-new StoreCredentials("h", 23).getCredentials()
+import checkUser from '../../config/checkUser';
 
 export class Sign extends Component {
 
@@ -22,10 +19,11 @@ export class Sign extends Component {
             name: "",
             street: "",
             city: "",
+            email: "",
             houseNo: "",
             state: "",
             zip: "",
-            phoneNo: "",
+            phone: "",
             passwd: ""
         }
 
@@ -73,13 +71,13 @@ export class Sign extends Component {
                     <TextInput onChangeText={(val) => this.setState({ ...this.state, passwd: val })} secureTextEntry value={this.state.passwd} placeholder='Password' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
 
                     <TouchableOpacity onPress={async () => {
-                        if(await this.props.setSignData(this.state)){
-                            console.log("hello world")
+                        const status = await checkUser("sign", this.state);
+                        if (status.status === 404) {
+                            Alert.alert("Username already exist", status.message);
                         } else {
                             this.props.navigation.navigate(navigation.INTRO);
                         }
                     }}
-                        disabled={this.checkValLength()}
                         style={[tw`mt-5 h-13 w-full justify-center rounded`, { backgroundColor: this.checkValLength() ? colors.PRIMARY_LIGHT : colors.PRIMARY_COLOR }]}
                     >
                         <Text style={tw`${typography.smText} text-center text-white`}>Create Account</Text>

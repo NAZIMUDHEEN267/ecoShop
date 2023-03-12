@@ -12,10 +12,10 @@ const SignSchema = {
         state: "string",
         zip: "int",
         phone: "int",
-        passwd: "string"
+        passwd: "mixed"
     },
     primary_key: "_id"
 }
 
-export default Realm.open({ schema: [SignSchema] });
+export default new Realm({schema: [SignSchema]});
 

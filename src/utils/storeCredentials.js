@@ -13,7 +13,9 @@ export default class StoreCredentials {
         }
     }
 
-    async getCredentials() {
+    static async getCredentials() {
+        // await Keychain.resetGenericPassword();
+
         try {
             const credentials = await Keychain.getGenericPassword();
 

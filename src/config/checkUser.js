@@ -1,31 +1,49 @@
+import StoreCredentials from "../utils/storeCredentials";
+import realm from "./schema/sign";
+
 export default async function checkUser(value, clientData) {
     switch (value) {
         case "login": {
             try {
-                const findUser = fetch("https://jsonplaceholder.typicode.com/users")
-                const data = await findUser.json();
-                for (const user in data) {
-                    if (data[user].username === clientData.name) {
-                        return data[user];
-                    }
-                }
+                const credentials = await new StoreCredentials.getCredentials();
 
-                return false;
+                if (credentials) {
+                    console.log(credentials);
+                }
             } catch (error) {
                 console.log(error);
             }
         }
         case "sign": {
             try {
-                const findUser = await fetch("https://jsonplaceholder.typicode.com/users");
-                const data = await findUser.json();
-                for (const user in data) {
-                    if (data[user].username === clientData.name) {
-                        return true;
-                    }
+
+                const { name, street, city, email, houseNo, state, zip, phone, passwd } = clientData;
+                const numZip = Number(zip);
+                const numPhone = Number(phone);
+                const numHouseNo = Number(houseNo);
+ 
+                const findUser = await realm.objects("Sign").filtered(`name = ${JSON.stringify(name)}`);
+                
+                if(findUser.length > 0) {
+                    return { status: 404, message: "The Username that you entered already exist, please choose anther one..."}
+                } else {
+                    await realm.write(() => {
+                        realm.create("Sign", {
+                            name,
+                            street,
+                            city,
+                            email,
+                            houseNo: numHouseNo,
+                            state,
+                            zip: numZip,
+                            phone: numPhone,
+                            passwd
+                        })
+                    }) 
+                
+                    return { status: 200 }
                 }
 
-                return false;
             } catch (error) {
                 console.error(error);
             }
