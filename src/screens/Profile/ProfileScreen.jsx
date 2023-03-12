@@ -6,13 +6,27 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { colors, navigation, spaces } from '../../constants';
 import { typography } from '../../theme';
 import { DataTable } from 'react-native-paper';
+import realm from '../../config/schema';
 
 export class ProfileScreen extends Component {
 
     constructor(props) {
         super(props);
 
-        this.address = "Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.";
+        this.state = {
+            username: "",
+            phone: "",
+            state: "",
+            city: "",
+            houseNo: "",
+            street: ""
+        };
+    }
+
+    async componentDidMount() {
+        const getDetails = await realm.objects("Sign")[0];
+        const { username, street, city, houseNo, state, phone } = getDetails;
+        this.setState({username, street, city, houseNo, state, phone});
     }
 
     render() {
@@ -37,23 +51,23 @@ export class ProfileScreen extends Component {
                     <DataTable>
                         <DataTable.Row>
                             <DataTable.Title>Name </DataTable.Title>
-                            <DataTable.Cell>Samuel Jhon</DataTable.Cell>
+                            <DataTable.Cell>{this.state.username}</DataTable.Cell>
                         </DataTable.Row>
                         <DataTable.Row>
                             <DataTable.Title>Phone </DataTable.Title>
-                            <DataTable.Cell>+91 999999999</DataTable.Cell>
+                            <DataTable.Cell>{this.state.phone}</DataTable.Cell>
                         </DataTable.Row>
                         <DataTable.Row>
                             <DataTable.Title>State </DataTable.Title>
-                            <DataTable.Cell>Kerala, India</DataTable.Cell>
+                            <DataTable.Cell>{this.state.state}</DataTable.Cell>
                         </DataTable.Row>
                         <DataTable.Row>
                             <DataTable.Title>Address</DataTable.Title>
-                            <DataTable.Cell>{this.address}</DataTable.Cell>
+                            <DataTable.Cell>{`${this.state.houseNo} ${this.state.street}, ${this.state.city}`}</DataTable.Cell>
                         </DataTable.Row>
                         <DataTable.Row>
                             <DataTable.Title>card</DataTable.Title>
-                            <DataTable.Cell>0456-XXXX-XXXX-XXXX</DataTable.Cell>
+                            <DataTable.Cell>{"Not added"}</DataTable.Cell>
                         </DataTable.Row>
                     </DataTable>
 

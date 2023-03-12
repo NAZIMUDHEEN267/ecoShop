@@ -1,24 +1,26 @@
 import StoreCredentials from "../utils/storeCredentials";
-import sign from "./schema/sign";
-import login from "./schema/login";
+import realm from "./schema";
+console.log(realm.objects("Sign"))
 
 
 export default async function checkUser(value, clientData) {
-    const findUser = await sign.objects("Sign").filtered(`username = ${JSON.stringify(clientData.username)}`);
+    const findUser = await realm.objects("Sign").filtered(`username = ${JSON.stringify(clientData.username)}`);
+    console.log(clientData);
 
     switch (value) {
         case "login": {
             try {
                 const credentials = await new StoreCredentials.getCredentials();
-                if (findUser.length > 0 && findUser[0].passwd === clientData.passwd) {
+
+                if (credentials) {
+                    return true;
+                } else if (findUser.length > 0 && findUser[0].passwd === clientData.passwd) {
                     await new StoreCredentials(clientData.username, clientData.passwd).secureCredentials();
-                    login.write(() => {
-                        login.create("Login", {
+                    realm.write(() => {
+                        realm.create("Login", {
                             access: true
                         })
                     })
-                    return true;
-                } else if (credentials) {
                     return true;
                 } else {
                     return false;
@@ -30,7 +32,6 @@ export default async function checkUser(value, clientData) {
         }
         case "sign": {
             try {
-
                 const { username, street, city, houseNo, state, zip, phone, passwd } = clientData;
                 const numZip = Number(zip);
                 const numPhone = Number(phone);
@@ -39,8 +40,8 @@ export default async function checkUser(value, clientData) {
                 if (findUser.length > 0) {
                     return { status: 404, message: "The Username that you entered already exist, please choose anther one..." }
                 } else {
-                    sign.write(() => {
-                        sign.create("Sign", {
+                    realm.write(() => {
+                        realm.create("Sign", {
                             username,
                             street,
                             city,
@@ -52,7 +53,6 @@ export default async function checkUser(value, clientData) {
                         })
                     })
 
-                    console.log(await sign.objects("Sign"));
                     return { status: 200 }
                 }
 

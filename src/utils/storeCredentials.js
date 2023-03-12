@@ -3,6 +3,7 @@ export default class StoreCredentials {
     constructor(values) {
         this.username = JSON.stringify(values.username);
         this.passwd = JSON.stringify(values.passwd);
+
     }
     
     async secureCredentials () {
