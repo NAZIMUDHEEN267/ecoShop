@@ -1,13 +1,11 @@
-import Realm from "realm";
-
 
 const LoginSchema = {
-    name: "login",
+    name: "Login",
     properties: {
-        "_id": { type: "objectId", default: () => Realm.BSON.ObjectID()}
-        username: "string",
-        passwd: "string"
-    }
+        "_id": { type: "objectId", default: () => Realm.BSON.ObjectID()},
+        access: {type: "bool", default: false}
+    },
     primary_key: "_id"
 }
 
+export default LoginSchema;

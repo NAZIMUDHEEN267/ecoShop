@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native'
+import { Text, TouchableOpacity, View, KeyboardAvoidingView, Alert } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
 import { TextInput } from 'react-native-gesture-handler';
@@ -26,11 +26,17 @@ export class Login extends Component {
 
           <Text style={tw`${typography.bgText} text-center mb-4 underline`}>Login</Text>
 
-          <TextInput onChangeText={(val) => this.setState({ ...this.state, name: val })} value={this.state.name} placeholder='Name' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
+          <TextInput onChangeText={(val) => this.setState({ ...this.state, username: val })} value={this.state.name} placeholder='Name' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
           <TextInput onChangeText={(val) => this.setState({ ...this.state, passwd: val })} secureTextEntry value={this.state.passwd} placeholder='Password' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
 
           <TouchableOpacity onPress={async () => {
-            await checkUser("login", this.state)
+            const status = await checkUser("login", this.state);
+
+            if (!status) {
+              Alert.alert("login failed", "username or password error");
+            } else {
+              this.props.navigation.navigate(navigation.INTRO);
+            }
           }}
             style={[tw`mt-5 h-13 w-full justify-center rounded`, { backgroundColor: colors.PRIMARY_COLOR }]}>
             <Text style={tw`${typography.smText} text-center text-white`}>Login</Text>

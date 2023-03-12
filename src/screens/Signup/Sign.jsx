@@ -16,10 +16,9 @@ export class Sign extends Component {
         super(props);
 
         this.state = {
-            name: "",
+            username: "",
             street: "",
             city: "",
-            email: "",
             houseNo: "",
             state: "",
             zip: "",
@@ -44,9 +43,10 @@ export class Sign extends Component {
 
                     <Text style={tw`${typography.bgText} text-center mb-4 underline`}>Sign Up</Text>
 
-                    <TextInput onChangeText={(val) => this.setState({ ...this.state, name: val })} value={this.state.name} placeholder='Name' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
+                    <TextInput onChangeText={(val) => this.setState({ ...this.state, username: val })} value={this.state.name} placeholder='Name' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
                     <TextInput onChangeText={(val) => this.setState({ ...this.state, street: val })} value={this.state.street} placeholder='Street Address' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
                     <TextInput onChangeText={(val) => this.setState({ ...this.state, city: val })} value={this.state.city} placeholder='City/Town' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
+                    {/* <TextInput onChangeText={(val) => this.setState({ ...this.state, city: val })} value={this.state.city} placeholder='Email' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} /> */}
                     <TextInput onChangeText={(val) => this.setState({ ...this.state, houseNo: val })} value={this.state.houseNo} placeholder='House no' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
                     <View style={tw`flex-row justify-evenly`}>
                         <SelectDropdown
@@ -67,14 +67,14 @@ export class Sign extends Component {
                             style={tw`bg-gray-100 rounded mt-2 w-.8/2 border-2 border-gray-300 mb-3 pl-2`}
                         />
                     </View>
-                    <TextInput onChangeText={(val) => this.setState({ ...this.state, phoneNo: val })} value={this.state.phoneNo} placeholder='Phone no' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
+                    <TextInput onChangeText={(val) => this.setState({ ...this.state, phone: val })} value={this.state.phoneNo} placeholder='Phone no' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
                     <TextInput onChangeText={(val) => this.setState({ ...this.state, passwd: val })} secureTextEntry value={this.state.passwd} placeholder='Password' style={tw`h-15 border-2 border-gray-300 rounded pl-2 mb-2`} />
 
                     <TouchableOpacity onPress={async () => {
                         const status = await checkUser("sign", this.state);
                         if (status.status === 404) {
                             Alert.alert("Username already exist", status.message);
-                        } else {
+                        } else if (status.status === 200){
                             this.props.navigation.navigate(navigation.INTRO);
                         }
                     }}
