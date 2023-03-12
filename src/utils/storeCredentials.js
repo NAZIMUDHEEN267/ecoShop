@@ -21,9 +21,9 @@ export default class StoreCredentials {
             const credentials = await Keychain.getGenericPassword();
 
             if(credentials) {
-                console.log(credentials.username);
+                return credentials.username;
             } else {
-                console.error("no credentials...");
+                return null;
             }
         } catch (error) {
             console.error(error);

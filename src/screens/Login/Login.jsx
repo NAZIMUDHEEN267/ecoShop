@@ -35,6 +35,7 @@ export class Login extends Component {
             if (!status) {
               Alert.alert("login failed", "username or password error");
             } else {
+              this.props.
               this.props.navigation.navigate(navigation.INTRO);
             }
           }}

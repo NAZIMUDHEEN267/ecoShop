@@ -75,6 +75,7 @@ export class Sign extends Component {
                         if (status.status === 404) {
                             Alert.alert("Username already exist", status.message);
                         } else if (status.status === 200){
+                            this.props.setSignData(status.data);
                             this.props.navigation.navigate(navigation.INTRO);
                         }
                     }}

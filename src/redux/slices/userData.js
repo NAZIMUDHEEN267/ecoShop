@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import checkUser from "../../config/checkUser";
 
 const initialState = {
     data: {},
@@ -28,27 +27,9 @@ const mapStateToProps = (state) => ({ getData: state.dataReducer });
 
 const mapDispatchToProps = dispatch => {
     return {
-        setSignData: async (data) => {
-            const isUser = await checkUser("sign", data);
-            if(!isUser) {
-                dispatch(setSignData(data));
-                return isUser;
-            } else {
-                return isUser;
-            }
-        },
-        setLogData: async (data) => {
-            const isUser = await checkUser("login", data);
-            if (isUser) {
-                dispatch(setLogData(data));
-                return isUser;
-            } else {
-                return isUser;
-            }
-        },
-        setUserLog: (data) => {
-            dispatch(setUser(data));
-        }
+        setSignData: async (data) => dispatch(setSignData(data)),
+        setLogData: async (data) => dispatch(setLogData(data)),
+        setUserLog: (data) => dispatch(setUser(data))
     }
 }
 
