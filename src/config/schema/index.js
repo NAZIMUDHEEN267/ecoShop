@@ -1,14 +1,24 @@
-
 import Realm from "realm";
-import LoginSchema from "./login";
 import SignSchema from "./sign";
+import { ATLAS_APP_ID } from "@env";
 
-const realm = new Realm({
-    schema: [
-        LoginSchema,
-        SignSchema
-    ]
-});
+// const app = new Realm.App({ id: ATLAS_APP_ID, timeout: 10000 });
+// const credentials = Realm.Credentials.jwt();
 
+export default new Realm({schema: [SignSchema]})
+// async () => {
+    
+//     const loggedInUser = await app.logIn(credentials);
 
-export default realm;
+//     const configuration = {
+//         schema: [
+//             SignSchema
+//         ],
+//         sync: {
+//             user: app.currentUser,
+//             flexible: true
+//         }
+//     };
+
+//     return Realm.open(configuration);
+// }

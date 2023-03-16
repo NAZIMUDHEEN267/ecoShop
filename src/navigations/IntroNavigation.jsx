@@ -16,8 +16,8 @@ export default IntroNavigation = () => {
     return (
         <Provider store={store}>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name={navigation.BOTTOM_TAB_NAVIGATOR} component={BottomTabNavigator} />
                 <Stack.Screen name={navigation.LOGIN} component={Login} />
+                <Stack.Screen name={navigation.BOTTOM_TAB_NAVIGATOR} component={BottomTabNavigator} />
                 <Stack.Screen name={navigation.SIGN_UP} component={Sign} />
                 <Stack.Screen name={navigation.INTRO} component={Intro} />
                 <Stack.Screen name={navigation.INTRO_PRODUCT} component={IntroProduct} />

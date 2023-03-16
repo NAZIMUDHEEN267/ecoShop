@@ -7,6 +7,7 @@ import { typography } from '../../theme';
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from '../../redux/slices/userData';
 import checkUser from '../../config/checkUser';
+import OAuthManager from "react-native-oauth"
 
 export class Login extends Component {
 
@@ -17,6 +18,23 @@ export class Login extends Component {
       username: "",
       passwd: ""
     }
+
+    this.manager = new OAuthManager('ecoShop');
+  }
+
+  componentDidMount() {
+    const config = {
+      twitter: {
+        consumer_key: 'SOME_CONSUMER_KEY',
+        consumer_secret: 'SOME_CONSUMER_SECRET'
+      },
+      facebook: {
+        client_id: 'YOUR_CLIENT_ID',
+        client_secret: 'YOUR_CLIENT_SECRET'
+      }
+    }
+
+    this.manager.configure(config);
   }
 
   render() {
