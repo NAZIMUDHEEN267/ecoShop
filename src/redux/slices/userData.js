@@ -10,6 +10,7 @@ const signSlice = createSlice({
     name: "userData",
     reducers: {
         setSignData: function (state, action) {
+            console.log(action);
             state.data = action.payload;
         },
         setLoginData: function (state, action) {
@@ -27,8 +28,8 @@ const mapStateToProps = (state) => ({ getData: state.dataReducer });
 
 const mapDispatchToProps = dispatch => {
     return {
-        setSignData: async (data) => dispatch(setSignData(data)),
-        setLogData: async (data) => dispatch(setLoginData(data)),
+        setSignData: (data) => dispatch(setSignData(data)),
+        setLogData: (data) => dispatch(setLoginData(data)),
         setUserLog: (data) => dispatch(setUser(data))
     }
 }

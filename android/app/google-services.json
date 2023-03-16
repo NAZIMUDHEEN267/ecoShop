@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1032959338851",
+    "project_id": "ecoshop-6e955",
+    "storage_bucket": "ecoshop-6e955.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032959338851:android:e945667615bbe8a46ccb56",
+        "android_client_info": {
+          "package_name": "com.ecoshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032959338851-2sa48m61eljoifbh4k0fclf78ve5q1hb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ecoshop",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1032959338851-m993lcdav9b8ptr770vifok7qmmvs2j2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ecoshop",
+            "certificate_hash": "936b28229796c78287bdf2587e9d0b9cd7900ccf"
+          }
+        },
+        {
+          "client_id": "1032959338851-iem8t66ti665t0q3g16kb66bgk4du1op.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCil6N1w-AZfTj9s2ZwchFYJAZAJrilgkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032959338851-fkopllmu565ub0no84lj3u54dmtpehca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
