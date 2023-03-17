@@ -9,23 +9,31 @@ import IntroProduct from "../screens/Intro/IntroProduct";
 import Login from "../screens/Login/Login";
 import Sign from "../screens/Signup/Sign";
 import BottomTabNavigator from "./BottomTabNavigator";
-import { useSelector } from "react-redux";
 import { useState } from "react";
+import Realm from "../config/schema";
 
 const Stack = createStackNavigator();
 
 export default IntroNavigation = () => {
     const [login, setLogin] = useState(store.getState().dataReducer.userFirst);
 
+    if (!login) {
+        Realm.write(() => {
+            Realm.create("Login", {
+                firstUser: false
+            })
+        })
+    }
+
     const unsubscribe = store.subscribe(() => {
-        setLogin(true)
+        setLogin(store.getState().dataReducer.userFirst)
     })
 
     return (
         <Provider store={store}>
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.BOTTOM_TAB_NAVIGATOR}>
+            <Stack.Navigator screenOptions={{ headerShown: false }} >
                 {
-                    !login ?
+                    login ?
                         (
                             <>
                                 <Stack.Screen name={navigation.LOGIN} component={Login} />

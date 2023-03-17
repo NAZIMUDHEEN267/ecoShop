@@ -3,7 +3,7 @@ const LoginSchema = {
     name: "Login",
     properties: {
         "_id": { type: "objectId", default: () => new Realm.BSON.ObjectId() },
-        "firstUser": "bool"
+        "firstUser": { type: "bool", default: true }
     },
     primary_key: "_id"
 }

@@ -7,6 +7,8 @@ import { colors, navigation, spaces } from '../../constants';
 import { typography } from '../../theme';
 import { DataTable } from 'react-native-paper';
 import realm from '../../config/schema';
+import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/userData';
+import { connect } from 'react-redux';
 
 export class ProfileScreen extends Component {
 
@@ -25,12 +27,11 @@ export class ProfileScreen extends Component {
     }
 
     async componentDidMount() {
-        const getDetails = realm.objects("Sign")[0];
+        const getDetails = this.props.getData;
         const { username, street, city, houseNo, state, phone, photo } = getDetails;
         const userPhoto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU";
 
         this.setState({username, street, city, houseNo, state, phone, photo: photo.length > 0 ? photo : userPhoto});
-
     }
 
     render() {
@@ -78,7 +79,7 @@ export class ProfileScreen extends Component {
                     </DataTable>
 
                     <View style={tw`mt-9 flex-row m-3 justify-between`}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.EDIT_ADDRESS)} style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.EDIT_ADDRESS, {username: this.state.username})} style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
                             <Text style={tw`${typography.smText} text-white`}>Edit Address</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.EDIT_PAYMENT)} style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
@@ -92,4 +93,4 @@ export class ProfileScreen extends Component {
     }
 }
 
-export default ProfileScreen
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);

@@ -27,7 +27,6 @@ export class Login extends Component {
     this.state = {
       username: "",
       passwd: "",
-      data: {}
     }
 
     // auth().signOut().then(value => console.log(value)).catch(err => console.log(err))
@@ -63,19 +62,11 @@ export class Login extends Component {
           zip: "0000",
         }
 
-        this.setState({ ...this.state, data: dataObj });
-        this.props.setUserLog(user.additionalUserInfo.isNewUser);
-        // const { } = user
+        this.props.setSignData(dataObj);
+        this.props.setUserLog(false);
       })
       .catch(err => console.log(err))
   }
-
-  componentDidUpdate() {
-    if ("username" in this.state.data) {
-      checkUser("sign", this.state.data);
-    }
-  }
-
 
   render() {
     return (

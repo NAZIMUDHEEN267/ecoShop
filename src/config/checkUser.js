@@ -33,7 +33,7 @@ export default async function checkUser(value, clientData) {
                 const numHouseNo = Number(houseNo);
 
                 if (findUser.length > 0) {
-                    return { status: 404, message: "The Username that you entered already exist, please choose anther one..." }
+                    return { status: 404, message: "The Username that you entered already exist, please choose anther one..."}
                 } else {
                     realm.write(() => {
                         realm.create("Sign", {
@@ -49,7 +49,7 @@ export default async function checkUser(value, clientData) {
                         })
                     })
                     
-                    const newObj = Object.assign(realm.objects("Sign"[0]), { passwd: null });
+                    const newObj = Object.assign(realm.objects("Sign")[0], { passwd: null });
 
                     return { status: 200, data: newObj }
                 }

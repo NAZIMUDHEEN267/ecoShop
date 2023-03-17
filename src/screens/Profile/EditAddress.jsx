@@ -13,7 +13,8 @@ export class EditAddress extends Component {
   constructor(props) {
     super(props);
 
-    this.details = realm.objects("Sign")[0];
+    const username = this.props.route.params.username;
+    this.details = realm.objects("Sign").filtered(`username = "${username}"`)[0];
 
     this.state = {
       username: this.details.username,
@@ -36,6 +37,8 @@ export class EditAddress extends Component {
         this.details.zip = Number(this.state.zip),
         this.details.phone = Number(this.state.phone)
     })
+
+    console.log(this.details);
   }
 
   render() {
