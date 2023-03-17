@@ -10,7 +10,6 @@ const signSlice = createSlice({
     name: "userData",
     reducers: {
         setSignData: function (state, action) {
-            console.log(action);
             state.data = action.payload;
         },
         setLoginData: function (state, action) {

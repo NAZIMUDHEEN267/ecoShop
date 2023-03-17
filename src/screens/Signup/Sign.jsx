@@ -22,6 +22,7 @@ export class Sign extends Component {
             houseNo: "",
             state: "",
             zip: "",
+            photo: "",
             phone: "",
             passwd: ""
         }
@@ -76,7 +77,6 @@ export class Sign extends Component {
                             Alert.alert("Username already exist", status.message);
                         } else if (status.status === 200){
                             this.props.setSignData(status.data);
-                            this.props.navigation.navigate(navigation.INTRO);
                         }
                     }}
                         style={[tw`mt-5 h-13 w-full justify-center rounded`, { backgroundColor: this.checkValLength() ? colors.PRIMARY_LIGHT : colors.PRIMARY_COLOR }]}

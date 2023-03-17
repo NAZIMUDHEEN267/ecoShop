@@ -1,3 +1,4 @@
+
 import StoreCredentials from "../utils/storeCredentials";
 import realm from "./schema";
 
@@ -26,7 +27,7 @@ export default async function checkUser(value, clientData) {
         }
         case "sign": {
             try {
-                const { username, street, city, houseNo, state, zip, phone, passwd } = clientData;
+                const { username, street, city, houseNo, state, zip, phone, passwd, photo } = clientData;
                 const numZip = Number(zip);
                 const numPhone = Number(phone);
                 const numHouseNo = Number(houseNo);
@@ -41,12 +42,13 @@ export default async function checkUser(value, clientData) {
                             city,
                             houseNo: numHouseNo,
                             state,
+                            photo,
                             zip: numZip,
                             phone: numPhone,
                             passwd
                         })
                     })
-
+                    
                     const newObj = Object.assign(realm.objects("Sign"[0]), { passwd: null });
 
                     return { status: 200, data: newObj }

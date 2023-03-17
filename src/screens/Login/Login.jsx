@@ -29,23 +29,15 @@ export class Login extends Component {
       passwd: "",
       data: {}
     }
-    
-      // auth().signOut().then(value => console.log(value)).catch(err => console.log(err))
-     this.handleGoogleSignIn = this.handleGoogleSignIn.bind(this);
+
+    // auth().signOut().then(value => console.log(value)).catch(err => console.log(err))
+    this.handleGoogleSignIn = this.handleGoogleSignIn.bind(this);
   }
 
   componentDidMount() {
     GoogleSignin.configure({
       webClientId: WEB_CLIENT_ID
     })
-
-    if (auth().currentUser) {
-      const { displayName, email, phoneNumber, photoURL } = auth().currentUser;
-      this.props.setSignData({ displayName, email, phoneNumber, photoURL});
-      this.props.setUserLog(false);
-    }
-
-      // console.log(auth()?.currentUser.delete)
   }
 
   async handleGoogleSignIn() {
@@ -56,12 +48,34 @@ export class Login extends Component {
     const signedUser = auth().signInWithCredential(googleCredentials);
 
     signedUser
-      .then(user => this.setState({...this.state, data: {...user}}))
-      .catch(err => console.log(err))
+      .then(user => {
+        const { displayName, email, phoneNumber, photoURL } = user.user;
 
-      // this.setSignData(this.state.data);
-      // this.setUserLog(this.state.data)
+        const dataObj = {
+          username: displayName,
+          email: email,
+          phone: phoneNumber || "000000000",
+          photo: photoURL,
+          street: "Not defined",
+          city: "Not defined",
+          houseNo: "0000",
+          state: "Not defined",
+          zip: "0000",
+        }
+
+        this.setState({ ...this.state, data: dataObj });
+        this.props.setUserLog(user.additionalUserInfo.isNewUser);
+        // const { } = user
+      })
+      .catch(err => console.log(err))
   }
+
+  componentDidUpdate() {
+    if ("username" in this.state.data) {
+      checkUser("sign", this.state.data);
+    }
+  }
+
 
   render() {
     return (
@@ -88,7 +102,7 @@ export class Login extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity onPress={this.handleGoogleSignIn} style={tw`mt-5 h-13 w-full justify-center rounded bg-blue-700 flex-row items-center`}>
-            <Image source={GoogleIcon} style={tw`w-6 h-6 mr-3`}/>
+            <Image source={GoogleIcon} style={tw`w-6 h-6 mr-3`} />
             <Text style={tw`${typography.smText} text-center text-white`}>Continue with google</Text>
           </TouchableOpacity>
 

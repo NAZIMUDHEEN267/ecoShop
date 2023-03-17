@@ -19,14 +19,18 @@ export class ProfileScreen extends Component {
             state: "",
             city: "",
             houseNo: "",
-            street: ""
+            street: "",
+            photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU"
         };
     }
 
     async componentDidMount() {
-        const getDetails = await realm.objects("Sign")[0];
-        const { username, street, city, houseNo, state, phone } = getDetails;
-        this.setState({username, street, city, houseNo, state, phone});
+        const getDetails = realm.objects("Sign")[0];
+        const { username, street, city, houseNo, state, phone, photo } = getDetails;
+        const userPhoto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU";
+
+        this.setState({username, street, city, houseNo, state, phone, photo: photo.length > 0 ? photo : userPhoto});
+
     }
 
     render() {
@@ -41,7 +45,7 @@ export class ProfileScreen extends Component {
                     <Avatar
                         size={74}
                         rounded
-                        source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU" }}
+                        source={{ uri: this.state.photo }}
                         containerStyle={{ backgroundColor: 'orange', alignSelf: "center", marginTop: -37, marginBottom: 30 }}
                     >
                         <Avatar.Accessory size={24} />
@@ -63,7 +67,9 @@ export class ProfileScreen extends Component {
                         </DataTable.Row>
                         <DataTable.Row>
                             <DataTable.Title>Address</DataTable.Title>
-                            <DataTable.Cell>{`${this.state.houseNo} ${this.state.street}, ${this.state.city}`}</DataTable.Cell>
+                            <DataTable.Cell>
+                            {`${this.state.houseNo === 0 ? "" : this.state.houseNo} ${this.state.street === "Not defined" ? "" : this.state.street + ","} ${this.state.city}`}
+                            </DataTable.Cell>
                         </DataTable.Row>
                         <DataTable.Row>
                             <DataTable.Title>card</DataTable.Title>

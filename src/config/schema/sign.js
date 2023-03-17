@@ -9,6 +9,7 @@ const SignSchema = {
         houseNo: "int",
         state: "string",
         zip: "int",
+        photo: "mixed",
         phone: "int",
         passwd: "mixed"
     },
