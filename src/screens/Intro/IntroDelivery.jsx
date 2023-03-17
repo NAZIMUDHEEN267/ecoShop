@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import IntroItems from '../../components/IntroItems'
 import Delivery from "../../assets/svg/delivery.svg";
 import { navigation } from '../../constants';
+import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/userData';
+import { connect } from "react-redux";
+import Realm from "../../config/schema"
 
 export class IntroDelivery extends Component {
     constructor(props) {
@@ -12,6 +15,10 @@ export class IntroDelivery extends Component {
 
     handleEvent() {
         this.props.navigation.navigate(navigation.BOTTOM_TAB_NAVIGATOR);
+        Realm.write(() => {
+            const login = Realm.objects("Login")[0];
+            login.showHome = true ;
+        })
     }
 
     render() {
@@ -19,4 +26,4 @@ export class IntroDelivery extends Component {
     }
 }
 
-export default IntroDelivery;
+export default connect(mapStateToProps, mapDispatchToProps)(IntroDelivery);

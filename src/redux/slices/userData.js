@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     data: {},
     userFirst: true,
+    showHome: false
 }
 
 const signSlice = createSlice({
@@ -17,11 +18,14 @@ const signSlice = createSlice({
         },
         setUser: function (state, action) {
             state.userFirst = action.payload;
+        },
+        showHome: function (state, action) {
+            state.showHome = action.payload;
         }
 }
 })
 
-const { actions: { setSignData, setLoginData, setUser }, reducer } = signSlice;
+const { actions: { setSignData, setLoginData, setUser, showHome }, reducer } = signSlice;
 
 const mapStateToProps = (state) => ({ getData: state.dataReducer });
 
@@ -29,7 +33,8 @@ const mapDispatchToProps = dispatch => {
     return {
         setSignData: (data) => dispatch(setSignData(data)),
         setLogData: (data) => dispatch(setLoginData(data)),
-        setUserLog: (data) => dispatch(setUser(data))
+        setUserLog: (data) => dispatch(setUser(data)),
+        setShowHome: (data) => dispatch(showHome(data)) 
     }
 }
 

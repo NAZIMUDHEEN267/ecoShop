@@ -65,7 +65,10 @@ export class Login extends Component {
         this.props.setSignData(dataObj);
         this.props.setUserLog(false);
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        this.props.setUserLog(false);
+      })
+
   }
 
   render() {

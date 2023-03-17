@@ -24,7 +24,7 @@ export class Sign extends Component {
             zip: "",
             photo: "",
             phone: "",
-            passwd: ""
+            passwd: "",
         }
 
         this.checkValLength = () => {

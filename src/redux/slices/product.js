@@ -6,7 +6,7 @@ const initialState = {
     delivered: [],
     showCategory: false,
     category: "New arrivals",
-    products: null
+    products: null,
 }
 
 const productSlice = createSlice({
@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => {
         delProductData: (data) => dispatch(delProduct(data)),
         setShowCategory: (val) => dispatch(showCategory(val)),
         setEditCategory: (str) => dispatch(editCategory(str)),
-        changeApiProducts: (data) => dispatch(setApiProducts(data)) 
+        changeApiProducts: (data) => dispatch(setApiProducts(data))
     }
 }
 

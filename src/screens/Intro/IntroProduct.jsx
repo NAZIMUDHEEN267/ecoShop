@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import IntroItems from '../../components/IntroItems'
 import Shopping from "../../assets/svg/shopping.svg";
 import { navigation } from '../../constants';
-import { connect } from "react-redux";
 
 export class IntroProduct extends Component {
     constructor(props) {
@@ -20,4 +19,4 @@ export class IntroProduct extends Component {
   }
 }
 
-export default connect()(IntroProduct)
+export default IntroProduct
