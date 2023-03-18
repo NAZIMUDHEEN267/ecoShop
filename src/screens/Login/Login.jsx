@@ -66,7 +66,7 @@ export class Login extends Component {
         this.props.setUserLog(false);
       })
       .catch(err => {
-        this.props.setUserLog(false);
+        console.err(err);
       })
 
   }

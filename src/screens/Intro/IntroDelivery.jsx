@@ -15,9 +15,10 @@ export class IntroDelivery extends Component {
 
     handleEvent() {
         this.props.navigation.navigate(navigation.BOTTOM_TAB_NAVIGATOR);
+
         Realm.write(() => {
             const login = Realm.objects("Login")[0];
-            login.showHome = true ;
+            login.showHome = true;
         })
     }
 

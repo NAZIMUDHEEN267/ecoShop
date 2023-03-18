@@ -16,45 +16,62 @@ const Stack = createStackNavigator();
 
 export default IntroNavigation = () => {
     const [checkUser, setCheckUser] = useState({ showLog: true, showHome: false });
-    const checkClientDb = Realm.objects("Login");
-    const db = checkClientDb.filtered(`firstUser = ${false}`);
+    const [log, setLog] = useState([]);
 
     store.subscribe(() => {
-        const db = checkClientDb.filtered(`firstUser = ${false}`);
-        setCheckUser({ ...checkUser, showLog: !db.length > 0 });
+        setCheckUser({ ...checkUser, showLog: !log.length > 0 });
     });
 
-    // Realm.write(() => {
-    //     const login = Realm.objects("Login")[0];
-    //     login.firstUser = store.getState().dataReducer.userFirst
-    // })
+    // create new collection 
+    function createDb() {
+       if(!store.getState().dataReducer.userFirst) {
+           Realm.write(() => {
+               Realm.create("Login", {
+                   firstUser: false,
+                   showHome: false
+               })
+           })
+       }
+    }
 
     // checking user log in initial render
     useEffect(() => {
+        Realm.objects("Login")[0] || createDb();
+
+        const db = Realm.objects("Login").filtered(`firstUser = ${false}`);
+
+        setLog(db);
         setCheckUser({ ...checkUser, showLog: !db.length > 0 });
-    }, [])
+
+    }, [store.getState().dataReducer.userFirst])
 
     return (
         <Provider store={store}>
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={checkClientDb.showHome && navigation.BOTTOM_TAB_NAVIGATOR}>
+            <Stack.Navigator screenOptions={{ headerShown: false }} >
                 {
-                    checkUser.showLog ?
+                    log[0]?.showHome ?
                         (
                             <>
-                                <Stack.Screen name={navigation.LOGIN} component={Login} />
-                                <Stack.Screen name={navigation.SIGN_UP} component={Sign} />
-                            </>
-                        )
-                        :
-                        (
-                            <>
-                                <Stack.Screen name={navigation.INTRO} component={Intro} />
-                                <Stack.Screen name={navigation.INTRO_PRODUCT} component={IntroProduct} />
-                                <Stack.Screen name={navigation.INTRO_DELIVERY} component={IntroDelivery} />
-                                <Stack.Screen name={navigation.INTRO_PAYMENT} component={IntroPayment} />
                                 <Stack.Screen name={navigation.BOTTOM_TAB_NAVIGATOR} component={BottomTabNavigator} />
                             </>
                         )
+                        : (checkUser.showLog) ?
+                            (
+                                <>
+                                    <Stack.Screen name={navigation.LOGIN} component={Login} />
+                                    <Stack.Screen name={navigation.SIGN_UP} component={Sign} />
+                                </>
+                            )
+                            :
+                            (
+                                <>
+                                    <Stack.Screen name={navigation.INTRO} component={Intro} />
+                                    <Stack.Screen name={navigation.INTRO_PRODUCT} component={IntroProduct} />
+                                    <Stack.Screen name={navigation.INTRO_DELIVERY} component={IntroDelivery} />
+                                    <Stack.Screen name={navigation.INTRO_PAYMENT} component={IntroPayment} />
+                                    <Stack.Screen name={navigation.BOTTOM_TAB_NAVIGATOR} component={BottomTabNavigator} />
+                                </>
+                            )
                 }
             </Stack.Navigator>
         </Provider>
