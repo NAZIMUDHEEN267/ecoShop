@@ -12,6 +12,8 @@ export class ProductItem extends Component {
 
         this.nav = this.props.nav.navigate; 
         this.discount = (this.props.item.discountPercentage / this.props.item.price)  * 100
+        
+        console.log(this.props.item.images)
     }
 
   render() {

@@ -12,7 +12,7 @@ import ProductItem from '../../components/ProductItem';
 import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/product';
 import { connect } from "react-redux";
 import { ActivityIndicator } from 'react-native-paper';
-const data = require("../../data/data.json")
+import fetchData from '../../utils/fetchData';
 
 export class Home extends Component {
     constructor(props) {
@@ -36,8 +36,12 @@ export class Home extends Component {
     }
 
     componentDidMount() {
-        // this.props.setUserLog(false);
-        this.setState({ ...this.state, data: data.products, loading: false })
+
+            const data = fetchData();
+
+            // this.props.setUserLog(false);
+            this.setState({ ...this.state, data, loading: false })
+
     }
 
     render() {
@@ -203,6 +207,7 @@ export class Home extends Component {
             </ScrollView>
 
     }
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
