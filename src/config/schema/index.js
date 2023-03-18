@@ -9,10 +9,10 @@ import { ATLAS_APP_ID } from "@env";
 export default new Realm({schema: [SignSchema, LoginSchema]});
 
 new Realm({ schema: [SignSchema, LoginSchema] })
-.objects("Login").addListener((task, changes) => {
-    console.log(changes, task);
-})
-
+    .objects("Login").addListener((task, changes) => {
+        console.log(changes, task);
+    })
+    
 // async () => {
     
 //     const loggedInUser = await app.logIn(credentials);

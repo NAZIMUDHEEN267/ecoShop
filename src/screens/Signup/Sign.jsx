@@ -29,7 +29,6 @@ export class Sign extends Component {
         this.checkValLength = () => {
             for (const key in this.state) {
                 if (this.state[key].length === 0) {
-                    console.log(key);
                     return true;
                 }
             }

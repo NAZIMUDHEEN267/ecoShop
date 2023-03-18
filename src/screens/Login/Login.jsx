@@ -83,12 +83,11 @@ export class Login extends Component {
 
           <TouchableOpacity onPress={async () => {
             const status = await checkUser("login", this.state);
-
+            
             if (status.status === 404) {
               Alert.alert("login failed", status.message);
-            } else {
-              this.props.setLogData(status.data)
-              this.props.navigation.navigate(navigation.INTRO);
+            } else if (status.status === 200){
+              this.props.setLogData(true)
             }
           }}
             style={[tw`mt-5 h-13 w-full justify-center rounded`, { backgroundColor: colors.PRIMARY_COLOR }]}>

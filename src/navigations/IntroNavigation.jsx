@@ -19,6 +19,7 @@ export default IntroNavigation = () => {
     const [log, setLog] = useState([]);
 
     const usersLength = useRef(Realm.objects("Sign").length);
+    const data = store.getState().dataReducer;
 
     store.subscribe(() => {
         setCheckUser({ ...checkUser, showLog: !log.length > 0 });
@@ -26,14 +27,14 @@ export default IntroNavigation = () => {
 
     // create new collection 
     function createDb() {
-       if(!store.getState().dataReducer.userFirst) {
+       if(!data.userFirst) {
            Realm.write(() => {
                Realm.create("Login", {
                    firstUser: false,
                    showHome: false
                })
            })
-       }
+       } 
     }
 
     // checking user log in initial render
@@ -50,36 +51,22 @@ export default IntroNavigation = () => {
             setCheckUser({...checkUser, showLog: usersLength < signCltn.length})
         }
 
-    }, [store.getState().dataReducer.userFirst])
+    }, [data.userFirst])
+
+    // effect for login
+    useEffect(() => {
+        if(data.userlogin) {
+            Realm.write(() => {
+                const login = Realm.objects("Login")[0];
+                login.showHome = true;
+            })
+        }
+    }, [data.userlogin])
 
     return (
         <Provider store={store}>
             <Stack.Navigator screenOptions={{ headerShown: false }} >
-                {
-                    log[0]?.showHome ?
-                        (
-                            <>
-                                <Stack.Screen name={navigation.BOTTOM_TAB_NAVIGATOR} component={BottomTabNavigator} />
-                            </>
-                        )
-                        : (checkUser.showLog) ?
-                            (
-                                <>
-                                    <Stack.Screen name={navigation.LOGIN} component={Login} />
-                                    <Stack.Screen name={navigation.SIGN_UP} component={Sign} />
-                                </>
-                            )
-                            :
-                            (
-                                <>
-                                    <Stack.Screen name={navigation.INTRO} component={Intro} />
-                                    <Stack.Screen name={navigation.INTRO_PRODUCT} component={IntroProduct} />
-                                    <Stack.Screen name={navigation.INTRO_DELIVERY} component={IntroDelivery} />
-                                    <Stack.Screen name={navigation.INTRO_PAYMENT} component={IntroPayment} />
-                                    <Stack.Screen name={navigation.BOTTOM_TAB_NAVIGATOR} component={BottomTabNavigator} />
-                                </>
-                            )
-                }
+                <Stack.Screen name={navigation.LOGIN} component={Login} />
             </Stack.Navigator>
         </Provider>
     )

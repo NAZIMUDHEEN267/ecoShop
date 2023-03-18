@@ -8,23 +8,29 @@ export default async function checkUser(value, clientData) {
     switch (value) {
         case "login": {
             try {
+
+                // credentials are stored in keystore
+                const credentialUsername = await new StoreCredentials.getCredentials();
+                console.log(credentialUsername);
+
                 if (credentialUsername) {
-                    const credentialUsername = await new StoreCredentials.getCredentials();
-                    const data = realm.objects("Sign").filtered(`username = ${JSON.stringify(credentialUsername)}`)[0];
-                    return { status: 200, data: Object.assign(data, { passwd: null }) };
+                    const data = realm.objects("Sign").filtered(`username = "${credentialUsername}"`)[0];
+
+                    if (data) return { status: 200, data: Object.assign(data, { passwd: null }) }
+
                 } else if (findUser.length > 0 && findUser[0].passwd === clientData.passwd) {
-                    await new StoreCredentials(clientData.username, clientData.passwd).secureCredentials();
-                    const credentialUsername = await new StoreCredentials.getCredentials();
-                    const data = realm.objects("Sign").filtered(`username = ${JSON.stringify(credentialUsername)}`)[0];
-                    return { status: 200, data: Object.assign(data, { passwd: null }) };
+                    return { status: 200, data: Object.assign({ ...findUser[0] }, { passwd: null }) };
                 } else {
-                    return { status: 404, message: "username or password error" };
+                    return { status: 404, message: "Username or Password incorrect!!" }
                 }
 
             } catch (error) {
                 console.error(error);
             }
         }
+
+            break;
+
         case "sign": {
             try {
                 const { username, street, city, houseNo, state, zip, phone, passwd, photo } = clientData;
@@ -33,7 +39,7 @@ export default async function checkUser(value, clientData) {
                 const numHouseNo = Number(houseNo);
 
                 if (findUser.length > 0) {
-                    return { status: 404, message: "The Username that you entered already exist, please choose anther one..."}
+                    return { status: 404, message: "The Username that you entered already exist, please choose anther one..." }
                 } else {
                     realm.write(() => {
                         realm.create("Sign", {
@@ -48,15 +54,18 @@ export default async function checkUser(value, clientData) {
                             passwd
                         })
                     })
-                    
+
                     const userData = realm.objects("Sign").filtered(`username = ${JSON.stringify(clientData.username)}`);
 
                     return { status: 200, data: userData[0] }
                 }
-                
+
             } catch (error) {
                 console.error(error);
             }
         }
+
+            break;
+
     }
 }
