@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { Provider } from 'react-redux';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navigation } from "../constants";
 import store from "../redux/store/store";
 import Intro from "../screens/Intro/Intro";
@@ -17,6 +17,8 @@ const Stack = createStackNavigator();
 export default IntroNavigation = () => {
     const [checkUser, setCheckUser] = useState({ showLog: true, showHome: false });
     const [log, setLog] = useState([]);
+
+    const usersLength = useRef(Realm.objects("Sign").length);
 
     store.subscribe(() => {
         setCheckUser({ ...checkUser, showLog: !log.length > 0 });
@@ -38,10 +40,15 @@ export default IntroNavigation = () => {
     useEffect(() => {
         Realm.objects("Login")[0] || createDb();
 
+        const signCltn = Realm.objects("Sign");
         const db = Realm.objects("Login").filtered(`firstUser = ${false}`);
-
         setLog(db);
-        setCheckUser({ ...checkUser, showLog: !db.length > 0 });
+
+        if(db.length > 0) {
+            setCheckUser({ ...checkUser, showLog: !db.length > 0 });
+        } else if(signCltn.length > usersLength) {
+            setCheckUser({...checkUser, showLog: usersLength < signCltn.length})
+        }
 
     }, [store.getState().dataReducer.userFirst])
 

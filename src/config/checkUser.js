@@ -42,18 +42,18 @@ export default async function checkUser(value, clientData) {
                             city,
                             houseNo: numHouseNo,
                             state,
-                            photo,
+                            photo: "",
                             zip: numZip,
                             phone: numPhone,
                             passwd
                         })
                     })
                     
-                    const newObj = Object.assign(realm.objects("Sign")[0], { passwd: null });
+                    const userData = realm.objects("Sign").filtered(`username = ${JSON.stringify(clientData.username)}`);
 
-                    return { status: 200, data: newObj }
+                    return { status: 200, data: userData[0] }
                 }
-
+                
             } catch (error) {
                 console.error(error);
             }

@@ -22,7 +22,6 @@ export class Sign extends Component {
             houseNo: "",
             state: "",
             zip: "",
-            photo: "",
             phone: "",
             passwd: "",
         }
@@ -30,6 +29,7 @@ export class Sign extends Component {
         this.checkValLength = () => {
             for (const key in this.state) {
                 if (this.state[key].length === 0) {
+                    console.log(key);
                     return true;
                 }
             }
@@ -77,8 +77,10 @@ export class Sign extends Component {
                             Alert.alert("Username already exist", status.message);
                         } else if (status.status === 200){
                             this.props.setSignData(status.data);
+                            this.props.setUserLog(false);
                         }
                     }}
+                        disabled={this.checkValLength()}
                         style={[tw`mt-5 h-13 w-full justify-center rounded`, { backgroundColor: this.checkValLength() ? colors.PRIMARY_LIGHT : colors.PRIMARY_COLOR }]}
                     >
                         <Text style={tw`${typography.smText} text-center text-white`}>Create Account</Text>
