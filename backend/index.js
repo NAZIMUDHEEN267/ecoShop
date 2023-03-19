@@ -3,8 +3,11 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require("express");
 const app = express();
 
+app.use(express.json());
 
 app.post('/payment_sheet', async (req, res) => {
+    console.log(req.body);
+
     // Use an existing Customer ID if this is a returning customer.
     const customer = await stripe.customers.create();
     const ephemeralKey = await stripe.ephemeralKeys.create(
@@ -12,8 +15,8 @@ app.post('/payment_sheet', async (req, res) => {
         { apiVersion: '2022-11-15' }
     );
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: 1099,
-        currency: 'eur',
+        amount: req.body.amount * 100,
+        currency: 'INR',
         customer: customer.id,
         automatic_payment_methods: {
             enabled: true,
