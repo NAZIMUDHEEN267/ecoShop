@@ -1,23 +1,33 @@
+require("dotenv").config();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require("express");
-const Stripe = require("stripe");
-require('dotenv').config();
-
 const app = express();
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-app.use(express.json());
 
-app.post("/create-payment-intent", async (req, res) => {
+app.post('/payment_sheet', async (req, res) => {
+    // Use an existing Customer ID if this is a returning customer.
+    const customer = await stripe.customers.create();
+    const ephemeralKey = await stripe.ephemeralKeys.create(
+        { customer: customer.id },
+        { apiVersion: '2022-11-15' }
+    );
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: 5000,
-        currency: "usd"
+        amount: 1099,
+        currency: 'eur',
+        customer: customer.id,
+        automatic_payment_methods: {
+            enabled: true,
+        },
     });
 
-    res.send({
-        clientSecret: paymentIntent.client_secret
-    })
+    res.json({
+        paymentIntent: paymentIntent.client_secret,
+        ephemeralKey: ephemeralKey.secret,
+        customer: customer.id,
+        publishableKey: process.env.STRIPE_PUBLIC_KEY
+    });
 })
 
 app.listen(3000, () => {
-    console.log("backend running");
+    console.log("server running");
 })

@@ -22,23 +22,30 @@ export class ProfileScreen extends Component {
             city: "",
             houseNo: "",
             street: "",
-            photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU"
+            photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU",
+            globalData: {}
         };
+
+        this.dataObj = realm.objects("Sign")[0];
+        this.props.setSignData(this.dataObj);
     }
 
-    async componentDidMount() {
-        const getDetails = this.props.getData;
-        const { username, street, city, houseNo, state, phone, photo } = getDetails;
+    componentDidMount() {
+        const { username, street, city, houseNo, state, phone, photo } = this.dataObj;
         const userPhoto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU";
 
-        this.setState({username, street, city, houseNo, state, phone, photo: photo.length > 0 ? photo : userPhoto});
+        this.setState({username, street, city, houseNo, state, phone, photo: photo.length > 1 ? photo : userPhoto });
+    }
+
+    updateData() {
+        console.log(this.props.getData);
     }
 
     render() {
         return (
             <View style={tw`flex-1`}>
                 <View style={tw`h-1/3 w-full bg-gray-400 p-3 items-end`}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.PROFILE_NOTIFICATION)}>
+                    <TouchableOpacity onPress={(e) => this.props.navigation.navigate(navigation.PROFILE_NOTIFICATION)}>
                         <Icon type='feather' name='bell' />
                     </TouchableOpacity>
                 </View>
@@ -79,7 +86,7 @@ export class ProfileScreen extends Component {
                     </DataTable>
 
                     <View style={tw`mt-9 flex-row m-3 justify-between`}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.EDIT_ADDRESS, {username: this.state.username})} style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.EDIT_ADDRESS)} style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
                             <Text style={tw`${typography.smText} text-white`}>Edit Address</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.EDIT_PAYMENT)} style={{ width: spaces.width * .450, height: 39, backgroundColor: colors.PRIMARY_COLOR, alignItems: "center", justifyContent: "center", borderRadius: 5 }}>
