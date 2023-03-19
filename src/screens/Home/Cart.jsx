@@ -33,8 +33,11 @@ export class Cart extends Component {
             {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify({
+                    amount: 232
+                })
             });
 
         const { paymentIntent, ephemeralKey, customer } = await response.json();
@@ -63,9 +66,6 @@ export class Cart extends Component {
                 name: 'Jane Doe',
             }
         });
-        if (!error) {
-            Alert.alert("congradulations...")
-        }
     };
 
 
@@ -82,11 +82,7 @@ export class Cart extends Component {
     render() {
         return (
             <View style={tw`flex-1  ${spaces['p-normal']} h-full w-full items-center ${this.props.productData.cart.length > 0 && "justify-center"}`}>
-                <Button
-                    variant="primary"
-                    title="Checkout"
-                    onPress={this.openPaymentSheet}
-                />
+                
             </View>
         )
     }
