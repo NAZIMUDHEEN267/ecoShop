@@ -11,6 +11,8 @@ import HomeReview from "../screens/Home/HomeReview";
 import { connect } from "react-redux"
 import { mapStateToProps, mapDispatchToProps } from "../redux/slices/product";
 import Cart from "../screens/Home/Cart";
+import PaymentScreen from "../screens/Home/PaymentScreen";
+import SearchPage from "../screens/Home/SearchPage";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +21,7 @@ export function HomeNavigator(props) {
     return (
         <Stack.Navigator initialRouteName={navigation.HOME}>
             <Stack.Screen component={Home} name={navigation.HOME} options={{ headerShown: false }} />
+            <Stack.Screen component={SearchPage} name={navigation.SEARCH}  />
             <Stack.Screen
                 component={HomeAllCategories}
                 name={navigation.ALL_CATEGORIES}
@@ -93,6 +96,23 @@ export function HomeNavigator(props) {
                 component={HomeReview}
                 options={{
                     title: "Review",
+                    headerStyle: tw`bg-gray-100`,
+                    headerTitleAlign: "center",
+                    headerLeft: () => (
+                        <TouchableOpacity
+                            style={{ height: 35, alignItems: "center", justifyContent: "center", borderRadius: 100, width: 35, marginLeft: 20, backgroundColor: colors.PRIMARY_COLOR }}
+                            onPress={props.navigation.goBack}
+                        >
+                            <Icon type="entypo" name="chevron-left" size={30} color={colors.TEXT_LIGHT} />
+                        </TouchableOpacity>
+                    )
+                }}
+            />
+            <Stack.Screen 
+                component={PaymentScreen}
+                name={navigation.PAYMENT}
+                options={{
+                    title: "Payment",
                     headerStyle: tw`bg-gray-100`,
                     headerTitleAlign: "center",
                     headerLeft: () => (

@@ -4,28 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "echo \"Error: no test specified\" && exit 1"
-=======
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js"
->>>>>>> main
+    "start": "nodemon ./app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "i": "^0.3.7",
-    "npm": "^9.6.2",
-    "stripe": "^11.14.0"
-=======
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "strip": "^3.0.0"
->>>>>>> main
+    "strip": "^3.0.0",
+    "stripe": "^10.11.0"
   }
 }

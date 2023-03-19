@@ -1,6 +1,6 @@
 import { Text, View, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
-import { Image, SearchBar } from 'react-native-elements';
+import { Icon, Image, SearchBar } from 'react-native-elements';
 import tw from "twrnc";
 import Carousel from 'react-native-reanimated-carousel';
 import { colors, navigation, spaces } from '../../constants';
@@ -27,7 +27,7 @@ export class Home extends Component {
 
     categoryMaker(searchItem) {
         const values = this.state.data.filter((item) => {
-            if(item.category === searchItem) {
+            if (item.category === searchItem) {
                 return item;
             }
         })
@@ -35,13 +35,31 @@ export class Home extends Component {
         return values;
     }
 
+    // search product
+    handleSearch() {
+        const findItems = data.products.filter(product => {
+            const dataText = product.title.toLowerCase();
+
+            if(dataText.indexOf(this.state.searchText.toLowerCase()) > -1) {
+                return product;
+            }
+        })
+
+        this.props.navigation.navigate(navigation.SEARCH, {items: findItems});
+    }
+
     componentDidMount() {
+<<<<<<< HEAD
 
             const data = fetchData();
 
             // this.props.setUserLog(false);
             this.setState({ ...this.state, data, loading: false })
 
+=======
+        // this.props.setUserLog(false);
+        this.setState({ ...this.state, data: data.products, loading: false });
+>>>>>>> main
     }
 
     render() {
@@ -75,6 +93,9 @@ export class Home extends Component {
                         inputContainerStyle={tw`bg-white`}
                         value={this.state.searchText}
                         onChangeText={(text) => this.setState({ searchText: text })}
+                        searchIcon={() => (<TouchableOpacity onPress={() => this.handleSearch()}>
+                            <Icon name='search' type='andesign'/>
+                        </TouchableOpacity>)}
                     />
                 </View>
 
@@ -182,7 +203,7 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={this.categoryMaker("groceries")}
-                            renderItem={({ item, index }) => <ProductItem item={item} width={"6.5/8"} nav={this.props.navigation} dispatch={this.props.setProductData} />}
+                            renderItem={({ item, index }) => <Text>hhh</Text>}
                         />
                     </View>
                     {/* popular */}
@@ -200,7 +221,7 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={this.categoryMaker("skincare")}
-                            renderItem={({ item, index }) => <ProductItem item={item} width={"6.5/8"} nav={this.props.navigation} dispatch={this.props.setProductData}/>}
+                            renderItem={({ item, index }) => <Text>he</Text>}
                         />
                     </View>
                 </View>

@@ -11,8 +11,13 @@ import IntroProduct from "../screens/Intro/IntroProduct";
 import Login from "../screens/Login/Login";
 import Sign from "../screens/Signup/Sign";
 import BottomTabNavigator from "./BottomTabNavigator";
+<<<<<<< HEAD
 import Realm from "../config/schema";
 import { STRIPE_PUBLIC_KEY } from "@env";
+=======
+import { StripeProvider } from '@stripe/stripe-react-native';
+import { STRIPE_PUBLISH_KEY } from "@env";
+>>>>>>> main
 
 const Stack = createStackNavigator();
 
@@ -67,6 +72,7 @@ export default IntroNavigation = () => {
 
     return (
         <Provider store={store}>
+<<<<<<< HEAD
             <StripeProvider publishableKey={STRIPE_PUBLIC_KEY}>
                 <Stack.Navigator screenOptions={{ headerShown: false }} >
                     {
@@ -94,6 +100,17 @@ export default IntroNavigation = () => {
                                     </>
                                 )
                     }
+=======
+            <StripeProvider publishableKey={STRIPE_PUBLISH_KEY}>
+                <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={navigation.BOTTOM_TAB_NAVIGATOR}>
+                    <Stack.Screen name={navigation.LOGIN} component={Login} />
+                    <Stack.Screen name={navigation.SIGN_UP} component={Sign} />
+                    <Stack.Screen name={navigation.INTRO} component={Intro} />
+                    <Stack.Screen name={navigation.INTRO_PRODUCT} component={IntroProduct} />
+                    <Stack.Screen name={navigation.INTRO_DELIVERY} component={IntroDelivery} />
+                    <Stack.Screen name={navigation.INTRO_PAYMENT} component={IntroPayment} />
+                    <Stack.Screen name={navigation.BOTTOM_TAB_NAVIGATOR} component={BottomTabNavigator} />
+>>>>>>> main
                 </Stack.Navigator>
             </StripeProvider>
         </Provider>
