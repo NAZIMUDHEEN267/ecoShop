@@ -3,6 +3,7 @@ import Realm from "../config/schema";
 
 export default function fetchData () {
     const dataDb = Realm.objects("Data");
+    const cartDb = Realm.objects("Cart").length > 0 ? Realm.objects("Cart")[0] : [];
 
     if(dataDb.length < 1) {
         data.products.forEach(product => {
@@ -23,8 +24,8 @@ export default function fetchData () {
             })
         })
 
-        return dataDb;
+        return [dataDb, cartDb];
     }
 
-    return dataDb;
+    return [dataDb, cartDb];
 }

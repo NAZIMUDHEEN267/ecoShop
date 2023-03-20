@@ -49,17 +49,10 @@ export class Home extends Component {
     }
 
     componentDidMount() {
-<<<<<<< HEAD
-
             const data = fetchData();
-
             // this.props.setUserLog(false);
-            this.setState({ ...this.state, data, loading: false })
-
-=======
-        // this.props.setUserLog(false);
-        this.setState({ ...this.state, data: data.products, loading: false });
->>>>>>> main
+            this.setState({ ...this.state, data: data[0], loading: false })
+            // console.log(data[1]);
     }
 
     render() {
@@ -203,7 +196,7 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={this.categoryMaker("groceries")}
-                            renderItem={({ item, index }) => <Text>hhh</Text>}
+                            renderItem={({ item, index }) => <ProductItem nav={this.props.navigation} item={item} key={index} width={"4/5"} dispatch={this.props.setProductData}/>}
                         />
                     </View>
                     {/* popular */}
@@ -221,7 +214,7 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={this.categoryMaker("skincare")}
-                            renderItem={({ item, index }) => <Text>he</Text>}
+                            renderItem={({ item, index }) => <ProductItem nav={this.props.navigation} item={item} key={index} width={"4/5"}/>}
                         />
                     </View>
                 </View>

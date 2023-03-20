@@ -4,10 +4,9 @@ import tw from "twrnc";
 import { CardField, confirmPayment, initPaymentSheet, presentPaymentSheet } from '@stripe/stripe-react-native';
 import { connect } from "react-redux";
 import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/product';
-import { typography } from '../../theme';
-import { colors, navigation, spaces } from '../../constants';
-import { Icon } from 'react-native-elements';
+import { spaces } from '../../constants';
 import { Alert } from 'react-native';
+import CartItem from '../../components/CartItem';
 
 export class Cart extends Component {
     constructor(props) {
@@ -26,6 +25,7 @@ export class Cart extends Component {
     
     componentDidMount() {
         this.initializePaymentSheet();
+        this.setState({...this.state, data: this.props.productData.cart});
     }
 
     async fetchPaymentSheetParams() {
@@ -81,8 +81,10 @@ export class Cart extends Component {
    
     render() {
         return (
-            <View style={tw`flex-1  ${spaces['p-normal']} h-full w-full items-center ${this.props.productData.cart.length > 0 && "justify-center"}`}>
-                
+            <View style={tw`flex-1 ${spaces['p-normal']}`}>
+               {
+                this.state.data.map((product, i) => <CartItem key={i} item={product} callback={""}/>)
+               }
             </View>
         )
     }
