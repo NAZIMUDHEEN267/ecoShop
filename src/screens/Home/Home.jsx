@@ -51,12 +51,12 @@ export class Home extends Component {
     componentDidMount() {
             const data = fetchData();
             // this.props.setUserLog(false);
+            this.props.setProductData(data[1])
             this.setState({ ...this.state, data: data[0], loading: false })
-            // console.log(data[1]);
-    }
-
-    render() {
-        return this.state.loading ?
+        }
+        
+        render() {
+            return this.state.loading ?
             <View>
                 <ActivityIndicator />
             </View>
@@ -72,7 +72,7 @@ export class Home extends Component {
                         </View>
                         <View>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate(navigation.CART)}>
-                                <Text style={tw`absolute -top-2 -right-1 z-2 h-5 w-2.7 text-center rounded ${typography.smText} bg-yellow-300`}>{this.props.productData.cart.length}</Text>
+                                <Text style={tw`absolute -top-2 -right-1 z-2 h-5 w-4.7 text-center rounded bg-yellow-300`}>{this.props.productData.cart.length}</Text>
                                 <Image source={CartImg} style={{ height: 32, width: 32 }} resizeMode={"contain"} />
                             </TouchableOpacity>
                         </View>
@@ -214,7 +214,7 @@ export class Home extends Component {
                             style={{ width: spaces.width }}
                             loop
                             data={this.categoryMaker("skincare")}
-                            renderItem={({ item, index }) => <ProductItem nav={this.props.navigation} item={item} key={index} width={"4/5"}/>}
+                            renderItem={({ item, index }) => <ProductItem nav={this.props.navigation} item={item} key={index} width={"4/5"} dispatch={this.props.setProductData} />}
                         />
                     </View>
                 </View>

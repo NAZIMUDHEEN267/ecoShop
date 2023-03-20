@@ -7,6 +7,7 @@ import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/product'
 import { spaces } from '../../constants';
 import { Alert } from 'react-native';
 import CartItem from '../../components/CartItem';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export class Cart extends Component {
     constructor(props) {
@@ -81,11 +82,11 @@ export class Cart extends Component {
    
     render() {
         return (
-            <View style={tw`flex-1 ${spaces['p-normal']}`}>
+            <ScrollView style={tw`flex-1 ${spaces['p-normal']}`}>
                {
                 this.state.data.map((product, i) => <CartItem key={i} item={product} callback={""}/>)
                }
-            </View>
+            </ScrollView>
         )
     }
 }

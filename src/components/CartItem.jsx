@@ -6,24 +6,27 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { typography } from '../theme';
 import { colors } from '../constants';
 import Entypo from "react-native-vector-icons/Entypo"
+import { connect } from 'react-redux';
+import { mapDispatchToProps, mapStateToProps } from '../redux/slices/product';
 
 export class CartItem extends Component {
     constructor(props) {
         super(props);
 
         this.discount = (this.props?.item.discountPercentage / this.props?.item.price) * 100
+        console.log(this.props.item);
     }
 
     render() {
         return (
             <View style={tw`w-full h-50 bg-white rounded flex-row mt-3`}>
-                <View style={tw`w-2/5 h-full`}>
+                <View style={tw`w-2/5 h-full p-2`}>
                     <Image style={tw`w-full h-full`} source={{ uri: this.props.item.images[0] }} resizeMode={"contain"} />
                 </View>
 
                 <View style={tw`w-2.9/5 h-full justify-evenly pl-2`}>
                     <View>
-                    <Text style={tw`${typography.smText} text-black mb-2`}>{this.props.item.title}</Text>
+                        <Text style={tw`${typography.smText} text-black mb-2 text-center`}>{this.props.item.title}</Text>
                         {/* stars */}
                         <View style={tw`mt-1 mb-1 flex-row items-center justify-center`}>
                             <Entypo name='star' size={15} color={"#db9004"} />
@@ -41,7 +44,10 @@ export class CartItem extends Component {
                     </View>
 
                     <View style={tw`flex-row justify-between px-1 w-full rounded`}>
-                        <TouchableOpacity style={tw`w-20 h-7 bg-red-400 rounded items-center justify-center`}>
+                        <TouchableOpacity
+                            onPress={() => this.props.delProductData(this.props.item)}
+                            style={tw`w-20 h-7 bg-red-500 rounded items-center justify-center`}
+                        >
                             <Text style={tw`${typography.smText} text-white`}>Remove</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={tw`w-20 h-7 bg-green-500 rounded items-center justify-center`}>
@@ -54,4 +60,4 @@ export class CartItem extends Component {
     }
 }
 
-export default CartItem
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem)
