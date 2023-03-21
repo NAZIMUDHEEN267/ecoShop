@@ -13,16 +13,16 @@ export class EditAddress extends Component {
   constructor(props) {
     super(props);
 
-    this.details = realm.objects("Sign").filtered(`username = "Rrt"`)[0];
+    // this.details = realm.objects("Sign").filtered(`username = "Rrt"`)[0];
 
     this.state = {
-      username: this.details.username,
-      street: this.details.street,
-      city: this.details.city,
-      houseNo: String(this.details.houseNo),
-      state: this.details.state,
-      zip: this.details.zip.toString(),
-      phone: String(this.details.phone)
+      username: "",
+      street: "",
+      city: "",
+      houseNo: "",
+      state: "",
+      zip: "",
+      phone: ""
     }
   }
 

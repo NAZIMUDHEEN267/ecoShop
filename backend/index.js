@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const stripe = require('stripe')("sk_test_51MjghkSEmbFcNWbTUgbeYmXz0Gl8xvMOcbZhrEHUhpbnFPPBdLVXAztvD86aHJ2gjTD5Fzq2FP73kEzlT02j2PyM00u58k4q9C");
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 app.use(express.json());
 
@@ -27,7 +27,7 @@ app.post('/payment_sheet', async (req, res) => {
         paymentIntent: paymentIntent.client_secret,
         ephemeralKey: ephemeralKey.secret,
         customer: customer.id,
-        publishableKey: "pk_test_51MjghkSEmbFcNWbTjyjRl6qPXCsQ4FmEBlRlyMux77CMrMsaMIK4GVRrlTdyp17mQbGJbtmO6YhHhNK9W99JdYrB00Kw0knkMd"
+        publishableKey: process.env.STRIPE_PUBLIC_KEY
     });
 })
 

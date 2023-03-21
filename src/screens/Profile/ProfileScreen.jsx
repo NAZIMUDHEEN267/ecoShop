@@ -16,23 +16,23 @@ export class ProfileScreen extends Component {
         super(props);
 
         this.state = {
-            username: "",
-            phone: "",
-            state: "",
-            city: "",
-            houseNo: "",
-            street: "",
+            username: "anonymous",
+            phone: "7456234523",
+            state: "Kerala",
+            city: "Delhi",
+            houseNo: "34",
+            street: "somewhere",
             photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU",
             globalData: {}
         };
     }
 
-    componentDidMount() {
-        const { username, street, city, houseNo, state, phone, photo } = this.props.getData.data;
-        const userPhoto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU";
+    // componentDidMount() {
+    //     const { username, street, city, houseNo, state, phone, photo } = this.props.getData.data;
+    //     const userPhoto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU";
 
-        this.setState({username, street, city, houseNo, state, phone, photo: photo.length > 1 ? photo : userPhoto });
-    }
+    //     this.setState({username, street, city, houseNo, state, phone, photo: userPhoto });
+    // }
 
     render() {
         return (
@@ -69,7 +69,7 @@ export class ProfileScreen extends Component {
                         <DataTable.Row>
                             <DataTable.Title>Address</DataTable.Title>
                             <DataTable.Cell>
-                            {`${this.state.houseNo === 0 ? "" : this.state.houseNo} ${this.state.street === "Not defined" ? "" : this.state.street + ","} ${this.state.city}`}
+                            {`${this.state.houseNo}, ${this.state.street + ","} ${this.state.city}`}
                             </DataTable.Cell>
                         </DataTable.Row>
                         <DataTable.Row>
