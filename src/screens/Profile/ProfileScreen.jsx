@@ -25,20 +25,13 @@ export class ProfileScreen extends Component {
             photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU",
             globalData: {}
         };
-
-        this.dataObj = realm.objects("Sign")[0];
-        this.props.setSignData(this.dataObj);
     }
 
     componentDidMount() {
-        const { username, street, city, houseNo, state, phone, photo } = this.dataObj;
+        const { username, street, city, houseNo, state, phone, photo } = this.props.getData.data;
         const userPhoto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnxmnJi3tU50uY093zefZgSVGcO-AiE3ZRQ&usqp=CAU";
 
         this.setState({username, street, city, houseNo, state, phone, photo: photo.length > 1 ? photo : userPhoto });
-    }
-
-    updateData() {
-        console.log(this.props.getData);
     }
 
     render() {

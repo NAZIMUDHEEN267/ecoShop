@@ -18,6 +18,7 @@ import { GoogleSignin } from "@react-native-google-signin/google-signin"
 import auth from "@react-native-firebase/auth";
 import GoogleIcon from "../../assets/images/google.png";
 import { WEB_CLIENT_ID } from "@env";
+import realm from "../../config/schema";
 
 export class Login extends Component {
 
@@ -59,7 +60,7 @@ export class Login extends Component {
           city: "Not defined",
           houseNo: "0000",
           state: "Not defined",
-          zip: "0000",
+          zip: "0000"
         }
 
         this.props.setSignData(dataObj);
@@ -87,6 +88,7 @@ export class Login extends Component {
             if (status.status === 404) {
               Alert.alert("login failed", status.message);
             } else if (status.status === 200){
+              this.props.setSignData(status.data)
               this.props.setLogData(true)
             }
           }}

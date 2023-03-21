@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import realm from "../../config/schema";
 
 const initialState = {
     data: {},
@@ -12,6 +13,7 @@ const signSlice = createSlice({
     name: "userData",
     reducers: {
         setSignData: function (state, action) {
+            console.log(action.payload);
             state.data = action.payload;
         },
         setLoginData: function (state, action) {

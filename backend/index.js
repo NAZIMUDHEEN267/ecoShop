@@ -1,7 +1,7 @@
 require("dotenv").config();
-const stripe = require('stripe')("sk_test_51MjghkSEmbFcNWbTUgbeYmXz0Gl8xvMOcbZhrEHUhpbnFPPBdLVXAztvD86aHJ2gjTD5Fzq2FP73kEzlT02j2PyM00u58k4q9C");
 const express = require("express");
 const app = express();
+const stripe = require('stripe')("sk_test_51MjghkSEmbFcNWbTUgbeYmXz0Gl8xvMOcbZhrEHUhpbnFPPBdLVXAztvD86aHJ2gjTD5Fzq2FP73kEzlT02j2PyM00u58k4q9C");
 
 app.use(express.json());
 

@@ -8,10 +8,8 @@ export default async function checkUser(value, clientData) {
     switch (value) {
         case "login": {
             try {
-
                 // credentials are stored in keystore
                 const credentialUsername = await new StoreCredentials.getCredentials();
-                console.log(credentialUsername);
 
                 if (credentialUsername) {
                     const data = realm.objects("Sign").filtered(`username = "${credentialUsername}"`)[0];

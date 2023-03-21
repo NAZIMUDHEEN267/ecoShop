@@ -1,7 +1,6 @@
-import { Text, View, TouchableOpacity, Image, Button } from 'react-native'
 import React, { Component } from 'react'
 import tw from "twrnc";
-import { CardField, confirmPayment, initPaymentSheet, presentPaymentSheet } from '@stripe/stripe-react-native';
+import { initPaymentSheet, presentPaymentSheet } from '@stripe/stripe-react-native';
 import { connect } from "react-redux";
 import { mapDispatchToProps, mapStateToProps } from '../../redux/slices/product';
 import { spaces } from '../../constants';
@@ -15,18 +14,21 @@ export class Cart extends Component {
 
         this.state = {
             data: [],
-            key: ""
+            amount: 10
         }
 
         this.fetchPaymentSheetParams = this.fetchPaymentSheetParams.bind(this);
         this.initializePaymentSheet = this.initializePaymentSheet.bind(this);
         this.openPaymentSheet = this.openPaymentSheet.bind(this);
-
     }
-    
+
     componentDidMount() {
         this.initializePaymentSheet();
-        this.setState({...this.state, data: this.props.productData.cart});
+        this.setState({ ...this.state, data: this.props.productData.cart });
+    }
+
+    callback() {
+        this.setState({ ...this.state, data: this.props.productData.cart });
     }
 
     async fetchPaymentSheetParams() {
@@ -37,7 +39,7 @@ export class Cart extends Component {
                     "Content-Type": "application/json; charset=UTF-8"
                 },
                 body: JSON.stringify({
-                    amount: 232
+                    amount: this.state.amount
                 })
             });
 
@@ -70,7 +72,8 @@ export class Cart extends Component {
     };
 
 
-    async openPaymentSheet() {
+    async openPaymentSheet(amount) {
+        // this.setState({...this.state, amount})
         const { error } = await presentPaymentSheet();
 
         if (error) {
@@ -79,13 +82,13 @@ export class Cart extends Component {
             Alert.alert('Success', 'Your order is confirmed!');
         }
     }
-   
+
     render() {
         return (
             <ScrollView style={tw`flex-1 ${spaces['p-normal']}`}>
-               {
-                this.state.data.map((product, i) => <CartItem key={i} item={product} callback={""}/>)
-               }
+                {
+                    this.state.data.map((product, i) => <CartItem key={i} item={product} callback={this.callback.bind(this)} openSheet={this.openPaymentSheet.bind(this)}/>)
+                }
             </ScrollView>
         )
     }

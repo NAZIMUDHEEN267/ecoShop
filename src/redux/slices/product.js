@@ -15,15 +15,16 @@ const productSlice = createSlice({
     name: "cart",
     reducers: {
         setProduct: function (state, action) {
+            
             if(action.payload?.products) {
                 state.cart = action.payload.products;
                 return 
             }
-
-            state.cart = [...state.cart, action.payload];
+            
+            state.cart = Array.isArray(action.payload) && action.payload.length === 0 ? [] : [...state.cart, action.payload];
         },
         delProduct: function (state, action) {
-            deleteItemFromCart(action.payload);
+            state.cart = deleteItemFromCart(action.payload);
             state.deleted.push(action.payload);
         },
         showCategory(state, action) {

@@ -45,12 +45,18 @@ export class CartItem extends Component {
 
                     <View style={tw`flex-row justify-between px-1 w-full rounded`}>
                         <TouchableOpacity
-                            onPress={() => this.props.delProductData(this.props.item)}
+                            onPress={() => {
+                                this.props.callback();
+                                this.props.delProductData(this.props.item)
+                            }}
                             style={tw`w-20 h-7 bg-red-500 rounded items-center justify-center`}
                         >
                             <Text style={tw`${typography.smText} text-white`}>Remove</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={tw`w-20 h-7 bg-green-500 rounded items-center justify-center`}>
+                        <TouchableOpacity
+                            onPress={() => this.props.openSheet(this.props.item.price)}
+                            style={tw`w-20 h-7 bg-green-500 rounded items-center justify-center`}
+                        >
                             <Text style={tw`${typography.smText} text-white`}>Checkout</Text>
                         </TouchableOpacity>
                     </View>
